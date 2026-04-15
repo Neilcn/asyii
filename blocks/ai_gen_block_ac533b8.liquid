@@ -1,0 +1,883 @@
+{% doc %}
+  @prompt
+    Create an interactive quiz block that helps customers find matching pieces. The quiz should guide users through questions to recommend products that match their preferences. Include a clear call-to-action like "Not sure where to start? Take a little quiz to get the perfect match pieces" and make it visually engaging with easy-to-use question and answer options.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-quiz-container-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-quiz-content-{{ ai_gen_id }} {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ai-quiz-intro-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-quiz-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+  }
+
+  .ai-quiz-subheading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+    opacity: 0.8;
+  }
+
+  .ai-quiz-start-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .ai-quiz-start-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-quiz-questions-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-quiz-questions-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-quiz-progress-{{ ai_gen_id }} {
+    margin-bottom: 32px;
+  }
+
+  .ai-quiz-progress-bar-{{ ai_gen_id }} {
+    width: 100%;
+    height: 8px;
+    background-color: {{ block.settings.progress_bg_color }};
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .ai-quiz-progress-fill-{{ ai_gen_id }} {
+    height: 100%;
+    background-color: {{ block.settings.progress_fill_color }};
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  .ai-quiz-progress-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  .ai-quiz-question-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-quiz-question-{{ ai_gen_id }}.active {
+    display: block;
+    animation: ai-quiz-fade-in-{{ ai_gen_id }} 0.4s ease;
+  }
+
+  @keyframes ai-quiz-fade-in-{{ ai_gen_id }} {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ai-quiz-question-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.question_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+    text-align: center;
+  }
+
+  .ai-quiz-answers-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .ai-quiz-answer-{{ ai_gen_id }} {
+    padding: 20px;
+    background-color: {{ block.settings.answer_background }};
+    color: {{ block.settings.answer_text_color }};
+    border: {{ block.settings.answer_border_width }}px solid {{ block.settings.answer_border_color }};
+    border-radius: {{ block.settings.answer_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .ai-quiz-answer-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.answer_hover_background }};
+    color: {{ block.settings.answer_hover_text_color }};
+    border-color: {{ block.settings.answer_hover_border_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-quiz-answer-{{ ai_gen_id }}.selected {
+    background-color: {{ block.settings.answer_selected_background }};
+    color: {{ block.settings.answer_selected_text_color }};
+    border-color: {{ block.settings.answer_selected_border_color }};
+  }
+
+  .ai-quiz-navigation-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ai-quiz-nav-button-{{ ai_gen_id }} {
+    padding: 12px 32px;
+    background-color: {{ block.settings.nav_button_background }};
+    color: {{ block.settings.nav_button_text_color }};
+    border: {{ block.settings.nav_button_border_width }}px solid {{ block.settings.nav_button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .ai-quiz-nav-button-{{ ai_gen_id }}:hover:not(:disabled) {
+    background-color: {{ block.settings.nav_button_hover_background }};
+    color: {{ block.settings.nav_button_hover_text_color }};
+    border-color: {{ block.settings.nav_button_hover_border_color }};
+  }
+
+  .ai-quiz-nav-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .ai-quiz-results-{{ ai_gen_id }} {
+    display: none;
+    text-align: center;
+  }
+
+  .ai-quiz-results-{{ ai_gen_id }}.active {
+    display: block;
+    animation: ai-quiz-fade-in-{{ ai_gen_id }} 0.4s ease;
+  }
+
+  .ai-quiz-results-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+  }
+
+  .ai-quiz-results-text-{{ ai_gen_id }} {
+    font-size: 18px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 32px;
+    opacity: 0.8;
+  }
+
+  .ai-quiz-results-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .ai-quiz-results-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-quiz-container-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding | times: 0.6 }}px;
+    }
+
+    .ai-quiz-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+    }
+
+    .ai-quiz-question-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.question_size | times: 0.8 }}px;
+    }
+
+    .ai-quiz-answers-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<product-quiz-{{ ai_gen_id }} class="ai-quiz-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-quiz-content-{{ ai_gen_id }}">
+    <div class="ai-quiz-intro-{{ ai_gen_id }} active">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-quiz-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% endif %}
+      {% if block.settings.subheading != blank %}
+        <p class="ai-quiz-subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</p>
+      {% endif %}
+      <button class="ai-quiz-start-button-{{ ai_gen_id }}" data-quiz-start>
+        {{ block.settings.start_button_text }}
+      </button>
+    </div>
+
+    <div class="ai-quiz-questions-{{ ai_gen_id }}">
+      <div class="ai-quiz-progress-{{ ai_gen_id }}">
+        <div class="ai-quiz-progress-bar-{{ ai_gen_id }}">
+          <div class="ai-quiz-progress-fill-{{ ai_gen_id }}" data-progress-fill></div>
+        </div>
+        <div class="ai-quiz-progress-text-{{ ai_gen_id }}" data-progress-text>Question 1 of 5</div>
+      </div>
+
+      <div class="ai-quiz-question-{{ ai_gen_id }} active" data-question="1">
+        <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.question_1 }}</h3>
+        <div class="ai-quiz-answers-{{ ai_gen_id }}">
+          {% assign answers_1 = block.settings.answers_1 | split: ',' %}
+          {% for answer in answers_1 %}
+            <div class="ai-quiz-answer-{{ ai_gen_id }}" data-answer="{{ answer | strip }}">
+              {{ answer | strip }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="2">
+        <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.question_2 }}</h3>
+        <div class="ai-quiz-answers-{{ ai_gen_id }}">
+          {% assign answers_2 = block.settings.answers_2 | split: ',' %}
+          {% for answer in answers_2 %}
+            <div class="ai-quiz-answer-{{ ai_gen_id }}" data-answer="{{ answer | strip }}">
+              {{ answer | strip }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="3">
+        <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.question_3 }}</h3>
+        <div class="ai-quiz-answers-{{ ai_gen_id }}">
+          {% assign answers_3 = block.settings.answers_3 | split: ',' %}
+          {% for answer in answers_3 %}
+            <div class="ai-quiz-answer-{{ ai_gen_id }}" data-answer="{{ answer | strip }}">
+              {{ answer | strip }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="4">
+        <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.question_4 }}</h3>
+        <div class="ai-quiz-answers-{{ ai_gen_id }}">
+          {% assign answers_4 = block.settings.answers_4 | split: ',' %}
+          {% for answer in answers_4 %}
+            <div class="ai-quiz-answer-{{ ai_gen_id }}" data-answer="{{ answer | strip }}">
+              {{ answer | strip }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="5">
+        <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.question_5 }}</h3>
+        <div class="ai-quiz-answers-{{ ai_gen_id }}">
+          {% assign answers_5 = block.settings.answers_5 | split: ',' %}
+          {% for answer in answers_5 %}
+            <div class="ai-quiz-answer-{{ ai_gen_id }}" data-answer="{{ answer | strip }}">
+              {{ answer | strip }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-quiz-navigation-{{ ai_gen_id }}">
+        <button class="ai-quiz-nav-button-{{ ai_gen_id }}" data-quiz-prev disabled>Previous</button>
+        <button class="ai-quiz-nav-button-{{ ai_gen_id }}" data-quiz-next disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="ai-quiz-results-{{ ai_gen_id }}">
+      <h2 class="ai-quiz-results-title-{{ ai_gen_id }}">{{ block.settings.results_heading }}</h2>
+      <p class="ai-quiz-results-text-{{ ai_gen_id }}">{{ block.settings.results_text }}</p>
+      {% if block.settings.results_button_link != blank %}
+        <a href="{{ block.settings.results_button_link }}" class="ai-quiz-results-button-{{ ai_gen_id }}">
+          {{ block.settings.results_button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</product-quiz-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductQuiz{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentQuestion = 1;
+        this.totalQuestions = 5;
+        this.answers = {};
+      }
+
+      connectedCallback() {
+        this.intro = this.querySelector('.ai-quiz-intro-{{ ai_gen_id }}');
+        this.questionsSection = this.querySelector('.ai-quiz-questions-{{ ai_gen_id }}');
+        this.resultsSection = this.querySelector('.ai-quiz-results-{{ ai_gen_id }}');
+        this.startButton = this.querySelector('[data-quiz-start]');
+        this.prevButton = this.querySelector('[data-quiz-prev]');
+        this.nextButton = this.querySelector('[data-quiz-next]');
+        this.progressFill = this.querySelector('[data-progress-fill]');
+        this.progressText = this.querySelector('[data-progress-text]');
+        this.questions = this.querySelectorAll('.ai-quiz-question-{{ ai_gen_id }}');
+        this.answerButtons = this.querySelectorAll('.ai-quiz-answer-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.startButton.addEventListener('click', () => this.startQuiz());
+        this.prevButton.addEventListener('click', () => this.previousQuestion());
+        this.nextButton.addEventListener('click', () => this.nextQuestion());
+
+        this.answerButtons.forEach(button => {
+          button.addEventListener('click', (e) => this.selectAnswer(e));
+        });
+      }
+
+      startQuiz() {
+        this.intro.style.display = 'none';
+        this.questionsSection.classList.add('active');
+        this.updateProgress();
+      }
+
+      selectAnswer(e) {
+        const answerButton = e.currentTarget;
+        const question = answerButton.closest('.ai-quiz-question-{{ ai_gen_id }}');
+        const questionNumber = question.dataset.question;
+        const answerValue = answerButton.dataset.answer;
+
+        question.querySelectorAll('.ai-quiz-answer-{{ ai_gen_id }}').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+
+        answerButton.classList.add('selected');
+        this.answers[questionNumber] = answerValue;
+
+        this.nextButton.disabled = false;
+      }
+
+      previousQuestion() {
+        if (this.currentQuestion > 1) {
+          this.questions[this.currentQuestion - 1].classList.remove('active');
+          this.currentQuestion--;
+          this.questions[this.currentQuestion - 1].classList.add('active');
+          this.updateProgress();
+          this.updateNavigationButtons();
+        }
+      }
+
+      nextQuestion() {
+        if (this.currentQuestion < this.totalQuestions) {
+          this.questions[this.currentQuestion - 1].classList.remove('active');
+          this.currentQuestion++;
+          this.questions[this.currentQuestion - 1].classList.add('active');
+          this.updateProgress();
+          this.updateNavigationButtons();
+        } else {
+          this.showResults();
+        }
+      }
+
+      updateProgress() {
+        const progress = (this.currentQuestion / this.totalQuestions) * 100;
+        this.progressFill.style.width = progress + '%';
+        this.progressText.textContent = 'Question ' + this.currentQuestion + ' of ' + this.totalQuestions;
+      }
+
+      updateNavigationButtons() {
+        this.prevButton.disabled = this.currentQuestion === 1;
+
+        const currentQuestionElement = this.questions[this.currentQuestion - 1];
+        const hasAnswer = this.answers[this.currentQuestion];
+        this.nextButton.disabled = !hasAnswer;
+
+        if (this.currentQuestion === this.totalQuestions) {
+          this.nextButton.textContent = 'See Results';
+        } else {
+          this.nextButton.textContent = 'Next';
+        }
+      }
+
+      showResults() {
+        this.questionsSection.classList.remove('active');
+        this.resultsSection.classList.add('active');
+      }
+    }
+
+    customElements.define('product-quiz-{{ ai_gen_id }}', ProductQuiz{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product matching quiz",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find Your Perfect Match"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Not sure where to start? Take a little quiz to get the perfect match pieces"
+    },
+    {
+      "type": "text",
+      "id": "start_button_text",
+      "label": "Start button text",
+      "default": "Start Quiz"
+    },
+    {
+      "type": "header",
+      "content": "Question 1"
+    },
+    {
+      "type": "text",
+      "id": "question_1",
+      "label": "Question",
+      "default": "What's your style preference?"
+    },
+    {
+      "type": "textarea",
+      "id": "answers_1",
+      "label": "Answers",
+      "default": "Classic & Timeless, Modern & Minimal, Bold & Statement, Casual & Comfortable",
+      "info": "Separate answers with commas"
+    },
+    {
+      "type": "header",
+      "content": "Question 2"
+    },
+    {
+      "type": "text",
+      "id": "question_2",
+      "label": "Question",
+      "default": "What occasion are you shopping for?"
+    },
+    {
+      "type": "textarea",
+      "id": "answers_2",
+      "label": "Answers",
+      "default": "Everyday Wear, Work & Office, Special Events, Weekend Outings",
+      "info": "Separate answers with commas"
+    },
+    {
+      "type": "header",
+      "content": "Question 3"
+    },
+    {
+      "type": "text",
+      "id": "question_3",
+      "label": "Question",
+      "default": "Which color palette appeals to you most?"
+    },
+    {
+      "type": "textarea",
+      "id": "answers_3",
+      "label": "Answers",
+      "default": "Neutrals & Earth Tones, Bright & Vibrant, Pastels & Soft Hues, Black & White",
+      "info": "Separate answers with commas"
+    },
+    {
+      "type": "header",
+      "content": "Question 4"
+    },
+    {
+      "type": "text",
+      "id": "question_4",
+      "label": "Question",
+      "default": "What's your preferred fit?"
+    },
+    {
+      "type": "textarea",
+      "id": "answers_4",
+      "label": "Answers",
+      "default": "Relaxed & Loose, Tailored & Fitted, Oversized, Structured",
+      "info": "Separate answers with commas"
+    },
+    {
+      "type": "header",
+      "content": "Question 5"
+    },
+    {
+      "type": "text",
+      "id": "question_5",
+      "label": "Question",
+      "default": "What's most important to you?"
+    },
+    {
+      "type": "textarea",
+      "id": "answers_5",
+      "label": "Answers",
+      "default": "Comfort, Style, Versatility, Quality",
+      "info": "Separate answers with commas"
+    },
+    {
+      "type": "header",
+      "content": "Results"
+    },
+    {
+      "type": "text",
+      "id": "results_heading",
+      "label": "Results heading",
+      "default": "Your Perfect Matches Await!"
+    },
+    {
+      "type": "textarea",
+      "id": "results_text",
+      "label": "Results text",
+      "default": "Based on your answers, we've curated a collection of pieces that match your style perfectly."
+    },
+    {
+      "type": "text",
+      "id": "results_button_text",
+      "label": "Results button text",
+      "default": "Shop Your Matches"
+    },
+    {
+      "type": "url",
+      "id": "results_button_link",
+      "label": "Results button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f6f2ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "progress_bg_color",
+      "label": "Progress bar background",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "progress_fill_color",
+      "label": "Progress bar fill",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "question_size",
+      "label": "Question size",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#383838"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border",
+      "default": "#383838"
+    },
+    {
+      "type": "header",
+      "content": "Answer options"
+    },
+    {
+      "type": "color",
+      "id": "answer_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "answer_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "answer_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "answer_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "answer_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "answer_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "answer_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "answer_hover_border_color",
+      "label": "Hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "answer_selected_background",
+      "label": "Selected background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "answer_selected_text_color",
+      "label": "Selected text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "answer_selected_border_color",
+      "label": "Selected border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Navigation buttons"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "nav_button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_border_color",
+      "label": "Hover border",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product matching quiz"
+    }
+  ]
+}
+{% endschema %}

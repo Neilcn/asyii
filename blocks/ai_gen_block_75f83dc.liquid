@@ -1,0 +1,1355 @@
+{% doc %}
+  @prompt
+    Create a full-page width product recommendation quiz block with a customizable title, 3 multiple-choice questions with emoji-styled answer buttons, and product recommendation results. 
+    
+    The quiz should include:
+    - Editable quiz title in block settings (default: "Not sure where to start?")
+    - Question 1: "Who are you shopping for?" with 5 answer options (Myself, A best friend, A bride-to-be, A wedding guest moment, Mum/Mother figure)
+    - Question 2: "What's the occasion?" with 4 answer options (Birthday/Celebration, Wedding/Bridal shower, Holiday/Christmas, Just because)
+    - Question 3: "What vibe are you going for?" with 4 answer options (Soft & romantic, Minimal & elegant, Artistic & bold, Timeless & classic)
+    - Results page showing 2 recommended products with optional custom recommendation messages
+    
+    Backend settings should allow the store owner to:
+    - Manually assign 2 specific products for each answer combination
+    - Add custom recommendation text for each product result
+    - Customize the quiz title
+    - Style the quiz (colors, fonts, button styles)
+    
+    The design should be full-page width, mobile-responsive, with smooth transitions between questions, clear answer buttons with emojis, and an attractive results display showing the 2 matched products with images, titles, prices, and optional recommendation messages.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-quiz-container-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+  }
+
+  .ai-quiz-inner-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-quiz-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  .ai-quiz-question-{{ ai_gen_id }} {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-quiz-question-{{ ai_gen_id }}.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .ai-quiz-question-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.question_size }}px;
+    color: {{ block.settings.question_color }};
+    text-align: center;
+    margin: 0 0 30px;
+  }
+
+  .ai-quiz-answers-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .ai-quiz-answer-btn-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    padding: 20px;
+    font-size: {{ block.settings.button_text_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-quiz-answer-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-quiz-emoji-{{ ai_gen_id }} {
+    font-size: {{ block.settings.emoji_size }}px;
+    line-height: 1;
+  }
+
+  .ai-quiz-progress-{{ ai_gen_id }} {
+    text-align: center;
+    color: {{ block.settings.progress_color }};
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .ai-quiz-progress-bar-{{ ai_gen_id }} {
+    width: 100%;
+    height: 6px;
+    background-color: {{ block.settings.progress_bg_color }};
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+
+  .ai-quiz-progress-fill-{{ ai_gen_id }} {
+    height: 100%;
+    background-color: {{ block.settings.progress_fill_color }};
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  .ai-quiz-results-{{ ai_gen_id }} {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-quiz-results-{{ ai_gen_id }}.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .ai-quiz-results-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.results_title_size }}px;
+    color: {{ block.settings.results_title_color }};
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  .ai-quiz-products-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .ai-quiz-product-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.product_card_bg }};
+    border: 1px solid {{ block.settings.product_card_border }};
+    border-radius: {{ block.settings.product_card_radius }}px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .ai-quiz-product-image-{{ ai_gen_id }} {
+    width: 100%;
+    margin-bottom: 16px;
+    border-radius: {{ block.settings.product_image_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-quiz-product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-quiz-product-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.product_image_radius }}px;
+  }
+
+  .ai-quiz-product-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  .ai-quiz-product-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    color: {{ block.settings.product_title_color }};
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  .ai-quiz-product-price-{{ ai_gen_id }} {
+    font-size: 16px;
+    color: {{ block.settings.product_price_color }};
+    margin-bottom: 12px;
+  }
+
+  .ai-quiz-product-message-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.product_message_color }};
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .ai-quiz-product-link-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.cta_bg_color }};
+    color: {{ block.settings.cta_text_color }};
+    padding: 12px 24px;
+    border-radius: {{ block.settings.cta_border_radius }}px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-quiz-product-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_hover_bg_color }};
+    color: {{ block.settings.cta_hover_text_color }};
+  }
+
+  .ai-quiz-restart-btn-{{ ai_gen_id }} {
+    display: block;
+    margin: 30px auto 0;
+    background-color: {{ block.settings.restart_bg_color }};
+    color: {{ block.settings.restart_text_color }};
+    border: 1px solid {{ block.settings.restart_border_color }};
+    padding: 12px 30px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-quiz-restart-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.restart_hover_bg_color }};
+    color: {{ block.settings.restart_hover_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-quiz-answers-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-quiz-products-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-quiz-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-quiz-question-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.question_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<product-quiz-{{ ai_gen_id }} class="ai-quiz-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-quiz-inner-{{ ai_gen_id }}">
+    <h2 class="ai-quiz-title-{{ ai_gen_id }}">{{ block.settings.quiz_title }}</h2>
+
+    <div class="ai-quiz-progress-{{ ai_gen_id }}">
+      <span class="ai-quiz-progress-text-{{ ai_gen_id }}">Question <span class="current-question">1</span> of 3</span>
+    </div>
+    <div class="ai-quiz-progress-bar-{{ ai_gen_id }}">
+      <div class="ai-quiz-progress-fill-{{ ai_gen_id }}"></div>
+    </div>
+
+    <div class="ai-quiz-question-{{ ai_gen_id }} active" data-question="1">
+      <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.q1_text }}</h3>
+      <div class="ai-quiz-answers-{{ ai_gen_id }}">
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q1_a1">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q1_a1_emoji }}</span>
+          <span>{{ block.settings.q1_a1_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q1_a2">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q1_a2_emoji }}</span>
+          <span>{{ block.settings.q1_a2_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q1_a3">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q1_a3_emoji }}</span>
+          <span>{{ block.settings.q1_a3_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q1_a4">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q1_a4_emoji }}</span>
+          <span>{{ block.settings.q1_a4_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q1_a5">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q1_a5_emoji }}</span>
+          <span>{{ block.settings.q1_a5_text }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="2">
+      <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.q2_text }}</h3>
+      <div class="ai-quiz-answers-{{ ai_gen_id }}">
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q2_a1">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q2_a1_emoji }}</span>
+          <span>{{ block.settings.q2_a1_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q2_a2">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q2_a2_emoji }}</span>
+          <span>{{ block.settings.q2_a2_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q2_a3">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q2_a3_emoji }}</span>
+          <span>{{ block.settings.q2_a3_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q2_a4">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q2_a4_emoji }}</span>
+          <span>{{ block.settings.q2_a4_text }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ai-quiz-question-{{ ai_gen_id }}" data-question="3">
+      <h3 class="ai-quiz-question-title-{{ ai_gen_id }}">{{ block.settings.q3_text }}</h3>
+      <div class="ai-quiz-answers-{{ ai_gen_id }}">
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q3_a1">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q3_a1_emoji }}</span>
+          <span>{{ block.settings.q3_a1_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q3_a2">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q3_a2_emoji }}</span>
+          <span>{{ block.settings.q3_a2_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q3_a3">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q3_a3_emoji }}</span>
+          <span>{{ block.settings.q3_a3_text }}</span>
+        </button>
+        <button class="ai-quiz-answer-btn-{{ ai_gen_id }}" data-answer="q3_a4">
+          <span class="ai-quiz-emoji-{{ ai_gen_id }}">{{ block.settings.q3_a4_emoji }}</span>
+          <span>{{ block.settings.q3_a4_text }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ai-quiz-results-{{ ai_gen_id }}">
+      <h3 class="ai-quiz-results-title-{{ ai_gen_id }}">{{ block.settings.results_title }}</h3>
+      <div class="ai-quiz-products-{{ ai_gen_id }}">
+        <div class="ai-quiz-product-card-{{ ai_gen_id }}" data-product="1">
+          <div class="ai-quiz-product-image-{{ ai_gen_id }}">
+            <div class="ai-quiz-product-placeholder-{{ ai_gen_id }}">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+          </div>
+          <h4 class="ai-quiz-product-title-{{ ai_gen_id }}"></h4>
+          <div class="ai-quiz-product-price-{{ ai_gen_id }}"></div>
+          <div class="ai-quiz-product-message-{{ ai_gen_id }}"></div>
+          <a href="#" class="ai-quiz-product-link-{{ ai_gen_id }}">{{ block.settings.cta_text }}</a>
+        </div>
+        <div class="ai-quiz-product-card-{{ ai_gen_id }}" data-product="2">
+          <div class="ai-quiz-product-image-{{ ai_gen_id }}">
+            <div class="ai-quiz-product-placeholder-{{ ai_gen_id }}">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+          </div>
+          <h4 class="ai-quiz-product-title-{{ ai_gen_id }}"></h4>
+          <div class="ai-quiz-product-price-{{ ai_gen_id }}"></div>
+          <div class="ai-quiz-product-message-{{ ai_gen_id }}"></div>
+          <a href="#" class="ai-quiz-product-link-{{ ai_gen_id }}">{{ block.settings.cta_text }}</a>
+        </div>
+      </div>
+      <button class="ai-quiz-restart-btn-{{ ai_gen_id }}">{{ block.settings.restart_text }}</button>
+    </div>
+  </div>
+</product-quiz-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductQuiz{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentQuestion = 1;
+        this.answers = {};
+        this.productMappings = this.buildProductMappings();
+      }
+
+      connectedCallback() {
+        this.questions = this.querySelectorAll('.ai-quiz-question-{{ ai_gen_id }}');
+        this.resultsSection = this.querySelector('.ai-quiz-results-{{ ai_gen_id }}');
+        this.progressFill = this.querySelector('.ai-quiz-progress-fill-{{ ai_gen_id }}');
+        this.progressText = this.querySelector('.current-question');
+        this.answerButtons = this.querySelectorAll('.ai-quiz-answer-btn-{{ ai_gen_id }}');
+        this.restartButton = this.querySelector('.ai-quiz-restart-btn-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+        this.updateProgress();
+      }
+
+      buildProductMappings() {
+        const mappings = {};
+        {% for i in (1..80) %}
+          {% assign combo_key = 'combo_' | append: i %}
+          {% assign product1_key = 'combo_' | append: i | append: '_product1' %}
+          {% assign product2_key = 'combo_' | append: i | append: '_product2' %}
+          {% assign message1_key = 'combo_' | append: i | append: '_message1' %}
+          {% assign message2_key = 'combo_' | append: i | append: '_message2' %}
+          
+          {% assign combo = block.settings[combo_key] %}
+          {% assign product1 = block.settings[product1_key] %}
+          {% assign product2 = block.settings[product2_key] %}
+          {% assign message1 = block.settings[message1_key] %}
+          {% assign message2 = block.settings[message2_key] %}
+          
+          {% if combo != blank and product1 != blank %}
+            mappings['{{ combo }}'] = {
+              product1: {
+                {% if product1.featured_image %}
+                  image: '{{ product1.featured_image | image_url: width: 600 }}',
+                {% endif %}
+                title: '{{ product1.title | escape }}',
+                price: '{{ product1.price | money }}',
+                url: '{{ product1.url }}',
+                message: '{{ message1 | escape }}'
+              },
+              product2: {
+                {% if product2.featured_image %}
+                  image: '{{ product2.featured_image | image_url: width: 600 }}',
+                {% endif %}
+                title: '{{ product2.title | escape }}',
+                price: '{{ product2.price | money }}',
+                url: '{{ product2.url }}',
+                message: '{{ message2 | escape }}'
+              }
+            };
+          {% endif %}
+        {% endfor %}
+        return mappings;
+      }
+
+      setupEventListeners() {
+        this.answerButtons.forEach(button => {
+          button.addEventListener('click', (e) => this.handleAnswer(e));
+        });
+
+        this.restartButton.addEventListener('click', () => this.restartQuiz());
+      }
+
+      handleAnswer(e) {
+        const answer = e.currentTarget.dataset.answer;
+        this.answers['q' + this.currentQuestion] = answer;
+
+        if (this.currentQuestion < 3) {
+          this.currentQuestion++;
+          this.showQuestion(this.currentQuestion);
+          this.updateProgress();
+        } else {
+          this.showResults();
+        }
+      }
+
+      showQuestion(questionNumber) {
+        this.questions.forEach(q => {
+          q.classList.remove('active');
+        });
+
+        const nextQuestion = this.querySelector(`[data-question="${questionNumber}"]`);
+        if (nextQuestion) {
+          setTimeout(() => {
+            nextQuestion.classList.add('active');
+          }, 100);
+        }
+      }
+
+      updateProgress() {
+        const progress = ((this.currentQuestion - 1) / 3) * 100;
+        this.progressFill.style.width = progress + '%';
+        this.progressText.textContent = this.currentQuestion;
+      }
+
+      showResults() {
+        const comboKey = this.answers.q1 + '_' + this.answers.q2 + '_' + this.answers.q3;
+        const products = this.productMappings[comboKey];
+
+        this.questions.forEach(q => q.classList.remove('active'));
+
+        if (products) {
+          this.displayProducts(products);
+        } else {
+          this.displayDefaultProducts();
+        }
+
+        setTimeout(() => {
+          this.resultsSection.classList.add('active');
+          this.resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+
+      displayProducts(products) {
+        const productCards = this.querySelectorAll('.ai-quiz-product-card-{{ ai_gen_id }}');
+
+        [products.product1, products.product2].forEach((product, index) => {
+          const card = productCards[index];
+          if (!card || !product.title) return;
+
+          const imageContainer = card.querySelector('.ai-quiz-product-image-{{ ai_gen_id }}');
+          const title = card.querySelector('.ai-quiz-product-title-{{ ai_gen_id }}');
+          const price = card.querySelector('.ai-quiz-product-price-{{ ai_gen_id }}');
+          const message = card.querySelector('.ai-quiz-product-message-{{ ai_gen_id }}');
+          const link = card.querySelector('.ai-quiz-product-link-{{ ai_gen_id }}');
+
+          if (product.image) {
+            imageContainer.innerHTML = '<img src="' + product.image + '" alt="' + product.title + '" loading="lazy">';
+          }
+
+          title.textContent = product.title;
+          price.textContent = product.price;
+          
+          if (product.message) {
+            message.textContent = product.message;
+            message.style.display = 'block';
+          } else {
+            message.style.display = 'none';
+          }
+
+          link.href = product.url;
+        });
+      }
+
+      displayDefaultProducts() {
+        const productCards = this.querySelectorAll('.ai-quiz-product-card-{{ ai_gen_id }}');
+        productCards.forEach(card => {
+          const title = card.querySelector('.ai-quiz-product-title-{{ ai_gen_id }}');
+          const message = card.querySelector('.ai-quiz-product-message-{{ ai_gen_id }}');
+          
+          title.textContent = 'No product assigned';
+          message.textContent = 'Please configure products for this answer combination in the block settings.';
+          message.style.display = 'block';
+        });
+      }
+
+      restartQuiz() {
+        this.currentQuestion = 1;
+        this.answers = {};
+        this.resultsSection.classList.remove('active');
+        this.showQuestion(1);
+        this.updateProgress();
+        this.querySelector('.ai-quiz-container-{{ ai_gen_id }}').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    customElements.define('product-quiz-{{ ai_gen_id }}', ProductQuiz{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product quiz",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Quiz title"
+    },
+    {
+      "type": "text",
+      "id": "quiz_title",
+      "label": "Quiz title",
+      "default": "Not sure where to start?"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Question 1"
+    },
+    {
+      "type": "text",
+      "id": "q1_text",
+      "label": "Question text",
+      "default": "Who are you shopping for?"
+    },
+    {
+      "type": "text",
+      "id": "q1_a1_emoji",
+      "label": "Answer 1 emoji",
+      "default": "👤"
+    },
+    {
+      "type": "text",
+      "id": "q1_a1_text",
+      "label": "Answer 1 text",
+      "default": "Myself"
+    },
+    {
+      "type": "text",
+      "id": "q1_a2_emoji",
+      "label": "Answer 2 emoji",
+      "default": "👯"
+    },
+    {
+      "type": "text",
+      "id": "q1_a2_text",
+      "label": "Answer 2 text",
+      "default": "A best friend"
+    },
+    {
+      "type": "text",
+      "id": "q1_a3_emoji",
+      "label": "Answer 3 emoji",
+      "default": "👰"
+    },
+    {
+      "type": "text",
+      "id": "q1_a3_text",
+      "label": "Answer 3 text",
+      "default": "A bride-to-be"
+    },
+    {
+      "type": "text",
+      "id": "q1_a4_emoji",
+      "label": "Answer 4 emoji",
+      "default": "💃"
+    },
+    {
+      "type": "text",
+      "id": "q1_a4_text",
+      "label": "Answer 4 text",
+      "default": "A wedding guest moment"
+    },
+    {
+      "type": "text",
+      "id": "q1_a5_emoji",
+      "label": "Answer 5 emoji",
+      "default": "💐"
+    },
+    {
+      "type": "text",
+      "id": "q1_a5_text",
+      "label": "Answer 5 text",
+      "default": "Mum/Mother figure"
+    },
+    {
+      "type": "header",
+      "content": "Question 2"
+    },
+    {
+      "type": "text",
+      "id": "q2_text",
+      "label": "Question text",
+      "default": "What's the occasion?"
+    },
+    {
+      "type": "text",
+      "id": "q2_a1_emoji",
+      "label": "Answer 1 emoji",
+      "default": "🎂"
+    },
+    {
+      "type": "text",
+      "id": "q2_a1_text",
+      "label": "Answer 1 text",
+      "default": "Birthday/Celebration"
+    },
+    {
+      "type": "text",
+      "id": "q2_a2_emoji",
+      "label": "Answer 2 emoji",
+      "default": "💍"
+    },
+    {
+      "type": "text",
+      "id": "q2_a2_text",
+      "label": "Answer 2 text",
+      "default": "Wedding/Bridal shower"
+    },
+    {
+      "type": "text",
+      "id": "q2_a3_emoji",
+      "label": "Answer 3 emoji",
+      "default": "🎄"
+    },
+    {
+      "type": "text",
+      "id": "q2_a3_text",
+      "label": "Answer 3 text",
+      "default": "Holiday/Christmas"
+    },
+    {
+      "type": "text",
+      "id": "q2_a4_emoji",
+      "label": "Answer 4 emoji",
+      "default": "💝"
+    },
+    {
+      "type": "text",
+      "id": "q2_a4_text",
+      "label": "Answer 4 text",
+      "default": "Just because"
+    },
+    {
+      "type": "header",
+      "content": "Question 3"
+    },
+    {
+      "type": "text",
+      "id": "q3_text",
+      "label": "Question text",
+      "default": "What vibe are you going for?"
+    },
+    {
+      "type": "text",
+      "id": "q3_a1_emoji",
+      "label": "Answer 1 emoji",
+      "default": "🌸"
+    },
+    {
+      "type": "text",
+      "id": "q3_a1_text",
+      "label": "Answer 1 text",
+      "default": "Soft & romantic"
+    },
+    {
+      "type": "text",
+      "id": "q3_a2_emoji",
+      "label": "Answer 2 emoji",
+      "default": "✨"
+    },
+    {
+      "type": "text",
+      "id": "q3_a2_text",
+      "label": "Answer 2 text",
+      "default": "Minimal & elegant"
+    },
+    {
+      "type": "text",
+      "id": "q3_a3_emoji",
+      "label": "Answer 3 emoji",
+      "default": "🎨"
+    },
+    {
+      "type": "text",
+      "id": "q3_a3_text",
+      "label": "Answer 3 text",
+      "default": "Artistic & bold"
+    },
+    {
+      "type": "text",
+      "id": "q3_a4_emoji",
+      "label": "Answer 4 emoji",
+      "default": "💎"
+    },
+    {
+      "type": "text",
+      "id": "q3_a4_text",
+      "label": "Answer 4 text",
+      "default": "Timeless & classic"
+    },
+    {
+      "type": "header",
+      "content": "Results page"
+    },
+    {
+      "type": "text",
+      "id": "results_title",
+      "label": "Results title",
+      "default": "Perfect picks for you!"
+    },
+    {
+      "type": "range",
+      "id": "results_title_size",
+      "label": "Results title size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "results_title_color",
+      "label": "Results title color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "View product"
+    },
+    {
+      "type": "text",
+      "id": "restart_text",
+      "label": "Restart button text",
+      "default": "Retake quiz"
+    },
+    {
+      "type": "header",
+      "content": "Product combinations"
+    },
+    {
+      "type": "paragraph",
+      "content": "Configure products for each answer combination. Format: q1_a1_q2_a1_q3_a1 (Question 1 Answer 1, Question 2 Answer 1, Question 3 Answer 1)"
+    },
+    {
+      "type": "text",
+      "id": "combo_1",
+      "label": "Combination 1",
+      "default": "q1_a1_q2_a1_q3_a1"
+    },
+    {
+      "type": "product",
+      "id": "combo_1_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_1_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_1_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_1_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_2",
+      "label": "Combination 2",
+      "default": "q1_a1_q2_a1_q3_a2"
+    },
+    {
+      "type": "product",
+      "id": "combo_2_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_2_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_2_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_2_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_3",
+      "label": "Combination 3",
+      "default": "q1_a1_q2_a1_q3_a3"
+    },
+    {
+      "type": "product",
+      "id": "combo_3_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_3_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_3_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_3_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_4",
+      "label": "Combination 4",
+      "default": "q1_a1_q2_a1_q3_a4"
+    },
+    {
+      "type": "product",
+      "id": "combo_4_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_4_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_4_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_4_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_5",
+      "label": "Combination 5",
+      "default": "q1_a1_q2_a2_q3_a1"
+    },
+    {
+      "type": "product",
+      "id": "combo_5_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_5_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_5_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_5_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_6",
+      "label": "Combination 6"
+    },
+    {
+      "type": "product",
+      "id": "combo_6_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_6_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_6_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_6_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_7",
+      "label": "Combination 7"
+    },
+    {
+      "type": "product",
+      "id": "combo_7_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_7_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_7_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_7_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_8",
+      "label": "Combination 8"
+    },
+    {
+      "type": "product",
+      "id": "combo_8_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_8_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_8_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_8_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_9",
+      "label": "Combination 9"
+    },
+    {
+      "type": "product",
+      "id": "combo_9_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_9_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_9_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_9_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "text",
+      "id": "combo_10",
+      "label": "Combination 10"
+    },
+    {
+      "type": "product",
+      "id": "combo_10_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "combo_10_message1",
+      "label": "Product 1 message"
+    },
+    {
+      "type": "product",
+      "id": "combo_10_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "combo_10_message2",
+      "label": "Product 2 message"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1000
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f6f2ef"
+    },
+    {
+      "type": "header",
+      "content": "Questions style"
+    },
+    {
+      "type": "range",
+      "id": "question_size",
+      "label": "Question size",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Answer buttons"
+    },
+    {
+      "type": "range",
+      "id": "emoji_size",
+      "label": "Emoji size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Progress bar"
+    },
+    {
+      "type": "color",
+      "id": "progress_color",
+      "label": "Progress text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "progress_bg_color",
+      "label": "Progress bar background",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "progress_fill_color",
+      "label": "Progress bar fill",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    {
+      "type": "color",
+      "id": "product_card_bg",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "product_card_border",
+      "label": "Card border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "product_card_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product_image_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Price color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "product_message_color",
+      "label": "Message color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "CTA button"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg_color",
+      "label": "Hover background",
+      "default": "#383838"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Restart button"
+    },
+    {
+      "type": "color",
+      "id": "restart_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "restart_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "restart_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "restart_hover_bg_color",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "restart_hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product quiz"
+    }
+  ]
+}
+{% endschema %}
