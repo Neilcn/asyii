@@ -1184,11 +1184,11 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>{{ closest.product.metafields.custom.section_heading_2.value }}</p>",
+                "text": "<h2>{{ closest.product.metafields.custom.section_heading_2.value }}</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h3",
+                "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -1211,7 +1211,7 @@
               "settings": {
                 "text": "<p>{{ closest.product.metafields.custom.section_text_2.value }}</p>",
                 "width": "fit-content",
-                "max_width": "narrow",
+                "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
