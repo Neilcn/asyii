@@ -504,6 +504,28 @@
     "section_qgdK8M": {
       "type": "section",
       "blocks": {
+        "image_UNzBTA": {
+          "type": "image",
+          "settings": {
+            "image": "{{ closest.product.metafields.custom.section_image.value }}",
+            "link": "",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_FP9ePM": {
           "type": "group",
           "settings": {
@@ -539,8 +561,8 @@
             "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 40,
-            "padding-inline-end": 50
+            "padding-inline-start": 16,
+            "padding-inline-end": 40
           },
           "blocks": {
             "text_tDTN9c": {
@@ -653,33 +675,11 @@
             "text_JKcxwq",
             "text_9UVyJm"
           ]
-        },
-        "image_UNzBTA": {
-          "type": "image",
-          "settings": {
-            "image": "{{ closest.product.metafields.custom.section_image.value }}",
-            "link": "",
-            "image_ratio": "square",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "group_FP9ePM",
-        "image_UNzBTA"
+        "image_UNzBTA",
+        "group_FP9ePM"
       ],
       "name": "t:names.image_with_text",
       "settings": {
