@@ -1072,7 +1072,7 @@
           "settings": {
             "image": "{{ closest.product.metafields.custom.section_image.value }}",
             "link": "",
-            "image_ratio": "landscape",
+            "image_ratio": "square",
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
