@@ -44,7 +44,7 @@
       ],
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/041112608.jpg",
+        "image_1": "shopify://shop_images/asyii-page-home-hero_fbfe5e2e-9a5b-46a0-a32d-a2d0a411a01d.webp",
         "media_type_2": "image",
         "stack_media_on_mobile": true,
         "custom_mobile_media": false,
@@ -938,7 +938,7 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/041112510.jpg",
+            "background_image": "shopify://shop_images/asyii-page-home-banner-left.webp",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
