@@ -973,8 +973,8 @@
             "button_wcfyC4": {
               "type": "button",
               "settings": {
-                "label": "Shop now",
-                "link": "shopify://collections/all",
+                "label": "Shop Our Latest Collection",
+                "link": "shopify://collections/morning-refill",
                 "open_in_new_tab": false,
                 "style_class": "link",
                 "width": "fit-content",
@@ -1071,7 +1071,7 @@
             "button_wyFW8q": {
               "type": "button",
               "settings": {
-                "label": "Shop now",
+                "label": "Shop All",
                 "link": "shopify://collections/all",
                 "open_in_new_tab": false,
                 "style_class": "link",
