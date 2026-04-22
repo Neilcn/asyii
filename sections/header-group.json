@@ -14,6 +14,20 @@
     "header_announcements_MBAkme": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_UN4X46": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "<a href=\"/collections/morning-refill\" target=\"_blank\" title=\"Morning Refill\">Shop our latest arrivals!</a>",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_7rWkpT": {
           "type": "_announcement",
           "settings": {
@@ -29,6 +43,7 @@
         }
       },
       "block_order": [
+        "announcement_UN4X46",
         "announcement_7rWkpT"
       ],
       "name": "t:names.announcement_bar",
