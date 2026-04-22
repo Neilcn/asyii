@@ -761,7 +761,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>Shop Scarves<br/></h3>{{ closest.collection.description }}",
+                "text": "<h3>Shop Curated Pieces<br/></h3>{{ closest.collection.description }}",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
