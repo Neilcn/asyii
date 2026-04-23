@@ -12,5 +12,31 @@
     "market": "uk"
   },
   "parent": "header-group.json",
-  "sections": {}
+  "sections": {
+    "header_announcements_MBAkme": {
+      "settings": {},
+      "blocks": {
+        "announcement_giJ8e": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "disabled": false,
+          "settings": {
+            "text": "Free Shipping Over £180",
+            "link": "",
+            "header-ae51d27824c4fc065493ea54d84b5553": null,
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_giJ8e",
+        "announcement_UN4X46",
+        "announcement_7rWkpT"
+      ]
+    }
+  }
 }
