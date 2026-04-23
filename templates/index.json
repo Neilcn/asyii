@@ -1478,8 +1478,8 @@
       "settings": {
         "collection_list": [
           "square",
-          "scarves",
           "twilly",
+          "scarves",
           "accessories"
         ],
         "layout_type": "grid",
