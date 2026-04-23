@@ -75,9 +75,9 @@
           "settings": {
             "menu": "main-menu",
             "color_scheme": "",
-            "type_font_primary_size": "var(--font-size--body-sm)",
+            "type_font_primary_size": "0.75rem",
             "menu_font_style": "inverse",
-            "type_font_primary_link": "primary",
+            "type_font_primary_link": "accent",
             "type_case_primary_link": "uppercase",
             "menu_style": "featured_products",
             "featured_products_aspect_ratio": "4 / 5",
@@ -92,6 +92,10 @@
           "blocks": {}
         }
       },
+      "custom_css": [
+        ".mega-menu__link {font-size: 13px; text-transform: capitalize; font-weight: 100;}",
+        ".mega-menu__link--parent {color: #000; font-weight: 700;}"
+      ],
       "settings": {
         "logo_position": "center",
         "menu_position": "left",
@@ -104,7 +108,7 @@
         "country_selector_style": false,
         "show_language": true,
         "localization_font": "body",
-        "localization_font_size": "0.875rem",
+        "localization_font_size": "0.75rem",
         "localization_position": "right",
         "localization_row": "top",
         "section_width": "page-width",
