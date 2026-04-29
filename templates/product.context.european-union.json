@@ -12,5 +12,31 @@
     "market": "european-union"
   },
   "parent": "product.json",
-  "sections": {}
+  "sections": {
+    "main": {
+      "settings": {},
+      "blocks": {
+        "product-details": {
+          "blocks": {
+            "accordion_NKWPiW": {
+              "blocks": {
+                "accordion_row_pLFDcD": {
+                  "blocks": {
+                    "text_qLGEN9": {
+                      "settings": {
+                        "text": "<p>UK & APAC: Free shipping £115 and over</p><p>All Other Countries: Free shipping £170 and over. Duties and taxes may apply.</p><p>Easy returns within 14 days of delivery.</p><p><br/><strong>[View full policy] : </strong><a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\"><strong>Shipping & Delivery </strong></a><strong>and </strong><a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\"><strong>Refund Policy</strong></a></p>"
+                      }
+                    }
+                  },
+                  "settings": {}
+                }
+              },
+              "settings": {}
+            }
+          },
+          "settings": {}
+        }
+      }
+    }
+  }
 }
