@@ -11,6 +11,9 @@
   "markets": {
     "uk": {
       "parent": "@default"
+    },
+    "as": {
+      "parent": "@default"
     }
   }
 }
