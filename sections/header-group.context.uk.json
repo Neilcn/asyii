@@ -21,9 +21,9 @@
           "name": "t:names.announcement",
           "disabled": false,
           "settings": {
-            "text": "Free Shipping Over £180",
+            "text": "Free Shipping Over £115",
             "link": "",
-            "header-ae51d27824c4fc065493ea54d84b5553": null,
+            "header-428f7ff8b8461b92c9f4c5cb62cf1cf8": null,
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "",
