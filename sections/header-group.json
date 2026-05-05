@@ -18,7 +18,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "<a href=\"/collections/morning-refill\" target=\"_blank\" title=\"Morning Refill\">Shop our latest arrivals!</a>",
+            "text": "UK Free shipping on orders over £95",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
