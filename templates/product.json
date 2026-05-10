@@ -116,6 +116,14 @@
               },
               "blocks": {}
             },
+            "group_Hg4EJK": {
+              "type": "bundle-product",
+              "name": "Bundle product",
+              "settings": {
+                "gap": 12
+              },
+              "blocks": {}
+            },
             "text_TpP9aE": {
               "type": "text",
               "name": "t:names.text",
@@ -139,18 +147,6 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "divider_HrJgFt": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 12,
-                "padding-block-end": 12
               },
               "blocks": {}
             },
@@ -392,8 +388,8 @@
           "block_order": [
             "text_9WaLn7",
             "price_a7krng",
+            "group_Hg4EJK",
             "text_TpP9aE",
-            "divider_HrJgFt",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "accordion_NKWPiW"

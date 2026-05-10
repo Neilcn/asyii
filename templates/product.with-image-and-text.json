@@ -116,6 +116,14 @@
               },
               "blocks": {}
             },
+            "bundle_product_eyKDyn": {
+              "type": "bundle-product",
+              "name": "Bundle product",
+              "settings": {
+                "gap": 12
+              },
+              "blocks": {}
+            },
             "text_TpP9aE": {
               "type": "text",
               "name": "t:names.text",
@@ -392,6 +400,7 @@
           "block_order": [
             "text_9WaLn7",
             "price_a7krng",
+            "bundle_product_eyKDyn",
             "text_TpP9aE",
             "divider_HrJgFt",
             "variant_picker_R3rGDr",

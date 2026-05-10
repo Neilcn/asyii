@@ -9,10 +9,10 @@
  */
 {
   "markets": {
-    "uk": {
+    "as": {
       "parent": "@default"
     },
-    "as": {
+    "uk": {
       "parent": "@default"
     },
     "european-union": {
