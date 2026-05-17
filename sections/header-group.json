@@ -18,7 +18,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "UK Free shipping on orders over £95",
+            "text": "UK Free shipping",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
