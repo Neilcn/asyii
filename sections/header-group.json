@@ -14,6 +14,20 @@
     "header_announcements_MBAkme": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_NQBiLd": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "<a href=\"/collections/morning-refill\" title=\"Morning Refill\">Shop our latest arrivals!</a>",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_UN4X46": {
           "type": "_announcement",
           "name": "t:names.announcement",
@@ -27,24 +41,11 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "announcement_7rWkpT": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Use code LOVE for 20% off, Valid until May 12",
-            "link": "",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_UN4X46",
-        "announcement_7rWkpT"
+        "announcement_NQBiLd",
+        "announcement_UN4X46"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
