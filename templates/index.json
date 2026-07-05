@@ -16,18 +16,18 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "",
+            "text": "<h5><strong>SUMMER SALE</strong></h5><p></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "2rem",
-            "line_height": "tight",
+            "font_size": "1.5rem",
+            "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "color": "",
+            "color": "var(--color-foreground)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -37,20 +37,63 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "text_e7HLty": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Get 25% off our selected collection with code <em><strong>SUMMER25</strong></em></p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_TKHzDL": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "discover",
+            "link": "shopify://collections/morning-refill",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_tzGazA"
+        "text_tzGazA",
+        "text_e7HLty",
+        "button_TKHzDL"
       ],
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/asyii-page-home-hero_fbfe5e2e-9a5b-46a0-a32d-a2d0a411a01d.webp",
         "media_type_2": "image",
+        "image_2": "shopify://shop_images/asyii-garden-veil-double-face-silk-square-scarf-ss161125-2-m05.webp",
         "stack_media_on_mobile": true,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
-        "link": "shopify://collections/all",
+        "link": "shopify://collections/morning-refill",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
