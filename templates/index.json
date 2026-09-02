@@ -42,7 +42,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Get 25% off our selected collection with code <em><strong>SUMMER25</strong></em></p>",
+            "text": "<p>Get 15% off our selected collection with code <em><strong>AS15</strong></em></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
