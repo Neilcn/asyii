@@ -2224,7 +2224,7 @@
       "name": "t:names.blog_posts_grid",
       "settings": {
         "blog": "asyii-diaries",
-        "layout_type": "grid",
+        "layout_type": "carousel",
         "carousel_on_mobile": true,
         "post_limit": 3,
         "columns": 3,
