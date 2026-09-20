@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h5><strong>SUMMER SALE</strong></h5><p></p>",
+            "text": "<h5><strong>SEASONAL SALE</strong></h5><p></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
