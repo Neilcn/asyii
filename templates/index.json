@@ -2226,7 +2226,7 @@
         "blog": "asyii-diaries",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
-        "post_limit": 3,
+        "post_limit": 10,
         "columns": 3,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
