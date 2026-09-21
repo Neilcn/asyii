@@ -98,7 +98,9 @@
           <div class="bundle-product-card__price">
             {% if bundle_product_discount != blank %}
               <span class="bundle-product-card__price-regular">{{ bundle_product.price | money }}</span>
-              <span class="bundle-product-card__price-sale bundle-product__checked-only">{{ bundle_sale_price | money }}</span>
+              <span class="bundle-product-card__price-sale bundle-product__checked-only"
+        data-gift-label="FREE GIFT (worth {{ bundle_product.price | money_without_trailing_zeros }})"
+      >{{ bundle_sale_price | money }}</span>
             {% else %}
               {% render 'price', product_resource: bundle_product, show_sale_price_first: true %}
             {% endif %}
@@ -279,7 +281,7 @@
   }
 
   .bundle-product[data-bundle-discount="100"] .bundle-product-card__price-sale::after {
-    content: "FREE GIFT (worth £15)";
+    content: attr(data-gift-label);
     font-size: 0.85rem;
   }
 
