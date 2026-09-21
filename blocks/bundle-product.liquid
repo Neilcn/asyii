@@ -21,6 +21,7 @@
     data-bundle-product-root
     data-main-product-id="{{ main_product.id }}"
     data-bundle-variant-id="{{ bundle_variant.id }}"
+    data-bundle-discount="{{ bundle_product_discount | default: 0 }}"
     {{ block.shopify_attributes }}
   >
     {% if bundle_product_discount != blank %}
@@ -259,6 +260,29 @@
     font-weight: var(--font-paragraph--weight-bold, 600);
     color: rgb(var(--color-foreground-rgb));
   }
+
+  .bundle-product[data-bundle-discount="100"] .bundle-product__badge {
+    display: none !important;
+  }
+
+  .bundle-product[data-bundle-discount="100"] .bundle-product__offer {
+    font-size: 0 !important;
+  }
+
+  .bundle-product[data-bundle-discount="100"] .bundle-product__offer::after {
+    content: "Buy the square, get the twilly FREE";
+    font-size: 0.95rem;
+  }
+
+  .bundle-product[data-bundle-discount="100"] .bundle-product-card__price-sale {
+    font-size: 0 !important;
+  }
+
+  .bundle-product[data-bundle-discount="100"] .bundle-product-card__price-sale::after {
+    content: "FREE GIFT \00b7 worth \00a315";
+    font-size: 0.85rem;
+  }
+
 {% endstylesheet %}
 
 {% javascript %}
