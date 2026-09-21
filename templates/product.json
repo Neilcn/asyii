@@ -378,9 +378,17 @@
                           },
                           "blocks": {}
                         }
-                      }
+                      },
+                      "block_order": [
+                        "trust_title_1",
+                        "trust_sub_1"
+                      ]
                     }
-                  }
+                  },
+                  "block_order": [
+                    "trust_icon_1",
+                    "trust_copy_1"
+                  ]
                 },
                 "trust_item_2": {
                   "type": "group",
@@ -521,9 +529,17 @@
                           },
                           "blocks": {}
                         }
-                      }
+                      },
+                      "block_order": [
+                        "trust_title_2",
+                        "trust_sub_2"
+                      ]
                     }
-                  }
+                  },
+                  "block_order": [
+                    "trust_icon_2",
+                    "trust_copy_2"
+                  ]
                 },
                 "trust_item_3": {
                   "type": "group",
@@ -664,9 +680,17 @@
                           },
                           "blocks": {}
                         }
-                      }
+                      },
+                      "block_order": [
+                        "trust_title_3",
+                        "trust_sub_3"
+                      ]
                     }
-                  }
+                  },
+                  "block_order": [
+                    "trust_icon_3",
+                    "trust_copy_3"
+                  ]
                 },
                 "trust_item_4": {
                   "type": "group",
@@ -807,11 +831,25 @@
                           },
                           "blocks": {}
                         }
-                      }
+                      },
+                      "block_order": [
+                        "trust_title_4",
+                        "trust_sub_4"
+                      ]
                     }
-                  }
+                  },
+                  "block_order": [
+                    "trust_icon_4",
+                    "trust_copy_4"
+                  ]
                 }
-              }
+              },
+              "block_order": [
+                "trust_item_1",
+                "trust_item_2",
+                "trust_item_3",
+                "trust_item_4"
+              ]
             },
             "accordion_NKWPiW": {
               "type": "accordion",
