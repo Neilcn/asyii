@@ -360,30 +360,6 @@
     }
   }
 {% endstylesheet %}
-
-{%- comment -%} ASYII-FALLBACK-STICKY-ATC-BEGIN {%- endcomment -%}
-<!-- ASYII fallback script (2026-09-24)
-     Mobile sticky add-to-cart bar is a type="button" + on:click JS-only control.
-     If the theme ES modules fail to load (browser without import map support),
-     tapping it does nothing. This plain script checks at click time whether
-     `product-form-component` was registered; if not, it clicks the real submit
-     button so the native form posts to /cart/add.
-     No DOM/CSS changes. No-op when modules are healthy. -->
-<script>
-  (function () {
-    var sticky = document.querySelector('.sticky-add-to-cart__button');
-    if (!sticky) return;
-
-    sticky.addEventListener('click', function () {
-      if (window.customElements && customElements.get('product-form-component')) return;
-
-      var real = document.querySelector('button[name="add"][type="submit"]');
-      if (real) real.click();
-    });
-  })();
-</script>
-{%- comment -%} ASYII-FALLBACK-STICKY-ATC-END {%- endcomment -%}
-
 {% schema %}
 {
   "name": "t:names.product_information",
