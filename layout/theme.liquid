@@ -45,7 +45,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     {{ content_for_header }}
     {% # theme-check-enable RemoteAsset %}
-  </head>
+  {%- comment -%} ASYII-SEO-NOINDEX-BEGIN {% endcomment %}
+{% comment %} 以下 10 篇旧文与新内容撞车或已过期，停止索引（页面仍可访问，删掉本段即恢复） {% endcomment %}
+{%- assign __ni = '|style/how-to-style-silk-scarves-a-complete-guide-for-modern-women|news/silk-accessories-in-modern-fashion-luxury-style-guide|news/why-silk-accessories-are-worth-it-luxury-silk-fashion-guide|news/the-capsule-wardrobe-algorithm-why-one-high-quality-scarf-beats-ten-fast-fashion-pieces|news/silk-scrunchies-vs-regular-hair-ties-what-s-the-difference|news/the-sustainability-advantages-of-100-mulberry-silk-in-scarves|news/the-power-piece-elevating-your-professional-wardrobe-for-the-boardroom-and-zoom|m/how-to-style-a-silk-wool-blend-scarf-for-the-season|style/luxury-silk-accessories-gift-guide-elegant-silk-gifts-for-women|news/top-trends-in-designer-silk-scarves-for-2025|' -%}
+{%- assign __rp = request.path -%}
+{%- if __rp contains '/blogs/' -%}
+  {%- assign __k = __rp | split: '/blogs/' | last | split: '?' | first -%}
+  {%- assign __k2 = __k | remove_last: '/' -%}
+  {%- assign __n1 = '|' | append: __k | append: '|' -%}
+  {%- assign __n2 = '|' | append: __k2 | append: '|' -%}
+  {%- if __ni contains __n1 or __ni contains __n2 -%}
+    <meta name="robots" content="noindex,follow">
+  {%- endif -%}
+{%- endif -%}
+{%- comment -%} ASYII-SEO-NOINDEX-END {%- endcomment -%}
+</head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
