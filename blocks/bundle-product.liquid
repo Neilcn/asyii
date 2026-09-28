@@ -10,6 +10,7 @@
     assign bundle_sale_price = bundle_product.price | times: discount_percent | divided_by: 100
   endif
 
+  assign bundle_discount_num = bundle_product_discount | plus: 0
   assign bundle_total_regular_price = main_product.price | plus: bundle_product.price
   assign bundle_total_sale_price = main_product.price | plus: bundle_sale_price
 %}
@@ -73,7 +74,7 @@
         class="bundle-product__checkbox"
         type="checkbox"
         data-bundle-checkbox
-        checked
+        {% if bundle_discount_num == 100 %}checked{% endif %}
         aria-label="Add bundle product"
       >
       <a class="bundle-product-card" href="{{ bundle_product.selected_or_first_available_variant.url }}">
@@ -115,6 +116,7 @@
         <span class="bundle-product__total-regular">{{ bundle_total_regular_price | money }}</span>
       {% endif %}
       <span class="bundle-product__total-value bundle-product__checked-only">{{ bundle_total_sale_price | money }}</span>
+      <span class="bundle-product__total-value bundle-product__unchecked-only">{{ main_product.price | money }}</span>
     </p>
   </div>
 {% endif %}
@@ -175,6 +177,14 @@
 
   .bundle-product.is-bundle-selected .bundle-product__checked-only {
     display: inline;
+  }
+
+  .bundle-product__unchecked-only {
+    display: inline;
+  }
+
+  .bundle-product.is-bundle-selected .bundle-product__unchecked-only {
+    display: none;
   }
 
   .bundle-product.is-bundle-selected .bundle-product__total-regular,
