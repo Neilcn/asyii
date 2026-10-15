@@ -1,0 +1,78 @@
+{%- comment -%} ASYII structured data (JSON-LD). Injected via layout/theme.liquid. {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": "{{ shop.url }}/#product-{{ product.id }}",
+        "name": {{ product.title | json }},
+        "url": "{{ product.url | prepend: shop.url }}",
+        {%- if product.featured_image -%}
+        "image": "https:{{ product.featured_image | img_url: '1024x1024' }}",
+        {%- endif -%}
+        "description": {{ product.description | strip_html | truncate: 300 | json }},
+        "sku": {{ product.selected_or_first_available_variant.sku | json }},
+        "brand": { "@type": "Brand", "name": "ASYII" },
+        "offers": {
+          "@type": "Offer",
+          "url": "{{ product.url | prepend: shop.url }}",
+          "priceCurrency": {{ shop.currency | json }},
+          "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+          "availability": "{% if product.selected_or_first_available_variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
+        }
+        {%- if product.metafields.reviews.rating_count -%}
+        ,"aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": {{ product.metafields.reviews.rating.value | json }},
+          "reviewCount": {{ product.metafields.reviews.rating_count | json }}
+        }
+        {%- endif -%}
+      }
+    ]
+  }
+  </script>
+{%- elsif request.page_type == 'article' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ article.title | json }},
+    {%- if article.image -%}
+    "image": "https:{{ article.image | img_url: '1024x1024' }}",
+    {%- endif -%}
+    "datePublished": "{{ article.published_at }}",
+    "dateModified": "{{ article.published_at }}",
+    "author": { "@type": "Organization", "name": "ASYII" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ASYII",
+      "logo": { "@type": "ImageObject", "url": "https:{{ 'logo.png' | asset_url }}" }
+    },
+    "description": {{ article.excerpt_or_content | strip_html | truncate: 300 | json }},
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ article.url | prepend: shop.url }}" }
+  }
+  </script>
+{%- elsif request.page_type == 'collection' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ collection.title | json }},
+    "description": {{ collection.description | strip_html | truncate: 300 | json }},
+    "url": "{{ collection.url | prepend: shop.url }}"
+  }
+  </script>
+{%- elsif request.page_type == 'index' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ASYII",
+    "url": "{{ shop.url }}",
+    "logo": "https:{{ 'logo.png' | asset_url }}",
+    "sameAs": []
+  }
+  </script>
+{%- endif -%}
