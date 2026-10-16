@@ -1,0 +1,63 @@
+{%- comment -%} ASYII additive Open Graph / Twitter tags.
+meta-tags.liquid already emits og:title / og:description / og:type / og:url / og:site_name and legacy og:price:* on products.
+This snippet adds what is missing site-wide:
+  - og:image (+ secure_url + width/height) and twitter:image — currently ABSENT everywhere because `page_image` is never assigned.
+  - og:locale (UK: en_GB)
+  - product:* Rich-Pin tags (availability / brand / retailer_item_id) for Facebook & Pinterest Rich Pins
+  - article:* tags (section / published / modified time)
+Fallback chain for the image: product/article/collection image → theme social_shared_image → a brand product image.
+{%- endcomment -%}
+
+{%- liquid
+  assign og_obj = false
+  if request.page_type == 'product'
+    if product.featured_media
+      assign og_obj = product.featured_media.preview_image
+    else
+      assign og_obj = product.featured_image
+    endif
+  elsif request.page_type == 'article'
+    assign og_obj = article.image
+  elsif request.page_type == 'collection'
+    assign og_obj = collection.image
+  endif
+
+  assign og_url = false
+  if og_obj and og_obj != blank
+    assign _t = og_obj | image_url: width: 1200
+    assign og_url = 'https:' | append: _t
+  endif
+  if og_url == false and settings.social_shared_image
+    assign _s = settings.social_shared_image | image_url: width: 1200
+    assign og_url = 'https:' | append: _s
+  endif
+  if og_url == false
+    assign og_url = 'https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-bloom-corner-double-face-silk-twill-scarf-ss161125-6-m02.webp?v=1776686189'
+  endif
+-%}
+
+{%- if og_url -%}
+<meta property="og:image" content="{{ og_url }}">
+<meta property="og:image:secure_url" content="{{ og_url }}">
+{%- if og_obj and og_obj.width -%}
+<meta property="og:image:width" content="{{ og_obj.width }}">
+<meta property="og:image:height" content="{{ og_obj.height }}">
+{%- endif -%}
+<meta name="twitter:image" content="{{ og_url }}">
+{%- endif -%}
+
+<meta property="og:locale" content="{{ shop.locale | replace: '-', '_' }}">
+
+{%- if request.page_type == 'product' -%}
+<meta property="product:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+<meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+<meta property="product:availability" content="{% if product.available %}in stock{% else %}out of stock{% endif %}">
+<meta property="product:brand" content="{{ shop.name | escape }}">
+<meta property="product:retailer_item_id" content="{{ product.id }}">
+{%- endif -%}
+
+{%- if request.page_type == 'article' -%}
+<meta property="article:section" content="{{ blog.title | escape }}">
+{%- if article.published_at -%}<meta property="article:published_time" content="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}">{%- endif -%}
+{%- if article.updated_at -%}<meta property="article:modified_time" content="{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}">{%- endif -%}
+{%- endif -%}
