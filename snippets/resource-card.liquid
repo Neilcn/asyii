@@ -86,6 +86,7 @@
           featured_image
           | image_url: width: image_width
           | image_tag:
+            alt: resource.title,
             loading: 'lazy',
             class: 'resource-card__image',
             widths: widths,
@@ -105,6 +106,7 @@
             resource.media[1]
             | image_url: width: image_width
             | image_tag:
+              alt: resource.title,
               loading: 'lazy',
               class: 'resource-card__image resource-card__image--secondary',
               widths: widths,
@@ -130,7 +132,7 @@
             {{
               product.featured_image
               | image_url: width: image_width
-              | image_tag: loading: 'lazy', class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
+              | image_tag: alt: product.title, loading: 'lazy', class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
             }}
           {% endfor %}
         </div>

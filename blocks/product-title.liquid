@@ -1,11 +1,17 @@
 
 
+{% assign _pt_open = '<p role="heading" aria-level="3">' %}
+{% assign _pt_close = '</p>' %}
+{% if request.page_type == 'product' %}
+  {% assign _pt_open = '<h1 class="product__title">' %}
+  {% assign _pt_close = '</h1>' %}
+{% endif %}
 {% if closest.product == blank %}
   {% assign text = 'placeholders.product_title' | t %}
-  {% assign product_title = '<p role="heading" aria-level="3">' | append: text | append: '</p>' %}
+  {% assign product_title = _pt_open | append: text | append: _pt_close %}
   {% render 'text', fallback_text: product_title, block: block %}
 {% else %}
-  {% assign product_title = '<p role="heading" aria-level="3">' | append: closest.product.title | append: '</p>' %}
+  {% assign product_title = _pt_open | append: closest.product.title | append: _pt_close %}
   <a
     class="contents user-select-text"
     ref="productTitleLink"
