@@ -1039,6 +1039,16 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "asyii_press_loammi": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.aupress{background:#F7F4EE;color:#2B2B28;padding:26px 32px;text-align:center;font-family:Georgia,'Times New Roman',serif;}\n.aupress p{margin:0;font-size:15px;line-height:1.6;}\n.aupress a{color:#9C5A3C;text-decoration:underline;text-underline-offset:3px;}\n@media(max-width:640px){.aupress{padding:22px 20px}.aupress p{font-size:14px}}\n</style>\n<section class='aupress'><p>As featured in <a href='https://loammi.co/post/asyii-interview' target='_blank' rel='noopener'>Lo'ammi — Where Silk Becomes Story: ASYII's Quiet Luxury Philosophy</a> <span style='color:#7A756C;font-size:13px'>(June 2026) ↗</span></p></section>",
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -1048,6 +1058,7 @@
     "media_with_content_gMXK4H",
     "collection_list_dg7miw",
     "section_RYQN9P",
-    "section_4CJaXi"
+    "section_4CJaXi",
+    "asyii_press_loammi"
   ]
 }
