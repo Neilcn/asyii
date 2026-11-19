@@ -262,12 +262,11 @@
         "collection_list": [
           "for-the-celebrations",
           "for-the-ones-you-love",
-          "for-the-wedding-moments",
-          "latest-collection"
+          "for-the-wedding-moments"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "columns": 2,
+        "columns": 3,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
