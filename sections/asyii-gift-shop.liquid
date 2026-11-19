@@ -1,7 +1,6 @@
 {%- comment -%} ASYII Gifting — auto gift guide (tag: Gifting & Occasions) + static occasion cards. Preview v4. {%- endcomment -%}
 {%- assign gift_blog = blogs['asyii-diaries'] -%}
-{%- assign guide_articles = gift_blog.articles | where: 'tags', 'Gifting & Occasions' | sort: 'published_at' | reverse -%}
-{%- if guide_articles.size > 8 -%}{%- assign guide_articles = guide_articles | slice: 0, 8 -%}{%- endif -%}
+{%- assign guide_count = 0 -%}
 <style>
 .asg{background:#faf9f6;color:#1a1a1a;font-family:'Plus Jakarta Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .asg *{box-sizing:border-box}
@@ -132,19 +131,23 @@
 
     <div class="sec" style="padding-top:0">
       <h2>Gift guides from the journal</h2>
-      {%- if guide_articles.size > 0 -%}
-      <div class="ggrid">
-        {%- for article in guide_articles -%}
-        <a class="gcard" href="{{ article.url }}">
-          <span class="date">{{ article.published_at | date: '%d %b %Y' }}</span>
-          <b>{{ article.title | escape }}</b>
-          <p>{{ article.excerpt | strip_html | strip | truncate: 150 }}</p>
-          <span class="more">Read the story <span>→</span></span>
-        </a>
-        {%- endfor -%}
-      </div>
-      {%- else -%}
+      {%- assign sorted_articles = gift_blog.articles | sort: 'published_at' | reverse -%}
+      {%- for article in sorted_articles -%}
+        {%- if article.tags contains 'Gifting & Occasions' and guide_count < 8 -%}
+          {%- if guide_count == 0 -%}<div class="ggrid">{%- endif -%}
+          <a class="gcard" href="{{ article.url }}">
+            <span class="date">{{ article.published_at | date: '%d %b %Y' }}</span>
+            <b>{{ article.title | escape }}</b>
+            <p>{{ article.excerpt | strip_html | strip | truncate: 150 }}</p>
+            <span class="more">Read the story <span>→</span></span>
+          </a>
+          {%- assign guide_count = guide_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if guide_count == 0 -%}
       <div class="empty">Gift guides are on their way.</div>
+      {%- else -%}
+      </div>
       {%- endif -%}
     </div>
   </div>
