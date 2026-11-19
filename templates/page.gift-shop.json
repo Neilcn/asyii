@@ -328,8 +328,8 @@
             "icon_ewEciK": {
               "type": "icon",
               "settings": {
-                "icon": "eye",
-                "width": 32,
+                "icon": "price_tag",
+                "width": 24,
                 "link": "",
                 "open_in_new_tab": false
               },
@@ -377,7 +377,7 @@
                 "text_q6nt9K": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Intentional design</h2>",
+                    "text": "<h2>Under £30</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -402,7 +402,7 @@
                 "text_NGtq4b": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Every print begins as a drawing of ours, never a licensed repeat</p>",
+                    "text": "<p>Scrunchies and small silk pieces</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -478,8 +478,8 @@
             "icon_bq9j4P": {
               "type": "icon",
               "settings": {
-                "icon": "heart",
-                "width": 32,
+                "icon": "price_tag",
+                "width": 24,
                 "link": "",
                 "open_in_new_tab": false
               },
@@ -527,7 +527,7 @@
                 "text_YJxfAB": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Hand-finished silk</h2>",
+                    "text": "<h2>£30 – £50</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -552,7 +552,7 @@
                 "text_wLbtid": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Edges are rolled and stitched by hand, not cut flat</p>",
+                    "text": "<p>Twillies, ribbons and 45cm squares</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -628,8 +628,8 @@
             "icon_Dg3YMF": {
               "type": "icon",
               "settings": {
-                "icon": "heart",
-                "width": 32,
+                "icon": "price_tag",
+                "width": 24,
                 "link": "",
                 "open_in_new_tab": false
               },
@@ -677,7 +677,7 @@
                 "text_QrxX8t": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>OEKO-TEX certified</h2>",
+                    "text": "<h2>£50 – £70</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -702,7 +702,7 @@
                 "text_Wkj7cQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Tested for harmful substances and safe against the skin</p>",
+                    "text": "<p>Printed twill squares and devoré</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -778,8 +778,8 @@
             "icon_LXGePQ": {
               "type": "icon",
               "settings": {
-                "icon": "silhouette",
-                "width": 32,
+                "icon": "price_tag",
+                "width": 24,
                 "link": "",
                 "open_in_new_tab": false
               },
@@ -827,7 +827,7 @@
                 "text_mMJfFi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Female-founded</h2>",
+                    "text": "<h2>£70 – £85</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -852,7 +852,7 @@
                 "text_GzRJy6": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>An independent studio, run by women from the start</p>",
+                    "text": "<p>90cm squares, silk-wool and triangle scarves</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -918,157 +918,43 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 48,
+        "padding-block-start": 8,
         "padding-block-end": 48
       }
     },
-    "featured_blog_posts_Fcehek": {
-      "type": "featured-blog-posts",
-      "blocks": {
-        "static-blog-title": {
-          "type": "_featured-blog-posts-title",
-          "name": "t:names.title",
-          "static": true,
-          "settings": {
-            "text": "<h3>Gift guides from the journal</h3>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "static-blog-post-card": {
-          "type": "_featured-blog-posts-card",
-          "name": "t:names.blog_card",
-          "static": true,
-          "settings": {
-            "alignment": "left",
-            "gap": 8,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "image": {
-              "type": "_featured-blog-posts-image",
-              "static": true,
-              "settings": {
-                "image_ratio": "square",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0
-              },
-              "blocks": {}
-            },
-            "title": {
-              "type": "_heading",
-              "name": "t:names.title",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "text": "<h4>{{ closest.article.title }}</h4>",
-                "read_only": false,
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-info-text": {
-              "type": "_blog-post-info-text",
-              "name": "t:names.details",
-              "static": true,
-              "settings": {
-                "show_date": true,
-                "show_author": true,
-                "type_preset": "",
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-description": {
-              "type": "_blog-post-description",
-              "name": "t:names.excerpt",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 8,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "name": "t:names.blog_posts_carousel",
+    "asyii_price_intro": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
       "settings": {
-        "blog": "asyii-diaries",
-        "layout_type": "carousel",
-        "carousel_on_mobile": true,
-        "post_limit": 5,
-        "columns": 3,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 16,
-        "icons_style": "arrow",
-        "icons_shape": "circle",
-        "section_width": "page-width",
-        "gap": 12,
+        "custom_liquid": "<div class=\"asyii-price-intro\"><h2>Gift by price</h2><p>Every piece is independently designed and hand-finished in silk — OEKO-TEX certified, from a female-founded studio.</p></div><style>\n.asyii-price-intro{text-align:center;padding:44px 0 4px}\n.asyii-price-intro h2{font-size:1.5rem;line-height:1.25;margin:0 0 10px}\n.asyii-price-intro p{font-size:.9rem;line-height:1.6;opacity:.72;max-width:54ch;margin:0 auto}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:0!important;padding-block-start:22px!important;padding-block-end:44px!important}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 0%!important;padding:2px 22px!important;min-width:0}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.14)}\n[id$=\"__section_UmmkqR\"] .icon-block__media{width:22px!important;height:22px!important;opacity:.5}\n[id$=\"__section_UmmkqR\"] h2{font-size:13px!important;letter-spacing:.11em!important;text-transform:uppercase;line-height:1.35;margin:0!important}\n[id$=\"__section_UmmkqR\"] p{font-size:13px!important;line-height:1.5;opacity:.72;margin:0!important}\n@media(max-width:749px){\n  .asyii-price-intro{padding:34px 0 0}\n  .asyii-price-intro h2{font-size:1.25rem}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:22px 0!important;padding-block-start:16px!important;padding-block-end:34px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 46%!important;padding:0 10px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:none}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block:nth-child(n+3){border-top:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.12);padding-top:20px}\n}\n</style>",
         "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "asyii_gift_guides": {
+      "type": "asyii-gift-guides",
+      "settings": {
+        "kicker": "The journal",
+        "heading": "Gift guides from the journal",
+        "blog": "asyii-diaries",
+        "tag": "Gifting & Occasions",
+        "post_limit": 6,
+        "card_cta": "Read the guide",
+        "link_label": "",
+        "link_url": "",
+        "section_width": "page-width",
         "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-end": 56
       }
     }
   },
   "order": [
     "section_rfKgGg",
     "collection_list_eUgi67",
+    "asyii_price_intro",
     "section_UmmkqR",
-    "featured_blog_posts_Fcehek"
+    "asyii_gift_guides"
   ]
 }
