@@ -70,7 +70,7 @@
           "disabled": true,
           "settings": {
             "label": "discover",
-            "link": "shopify://collections/morning-refill",
+            "link": "shopify:\/\/collections\/morning-refill",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "width": "fit-content",
@@ -89,12 +89,12 @@
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
-        "image_2": "shopify://shop_images/asyii-garden-veil-double-face-silk-square-scarf-ss161125-2-m05.webp",
+        "image_2": "shopify:\/\/shop_images\/asyii-garden-veil-double-face-silk-square-scarf-ss161125-2-m05.webp",
         "stack_media_on_mobile": true,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
-        "link": "shopify://collections/morning-refill",
+        "link": "shopify:\/\/collections\/morning-refill",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -164,7 +164,7 @@
               "type": "icon",
               "settings": {
                 "icon": "silhouette",
-                "image_upload": "shopify://shop_images/stamp.png",
+                "image_upload": "shopify:\/\/shop_images\/stamp.png",
                 "width": 20,
                 "link": "",
                 "open_in_new_tab": false
@@ -213,7 +213,7 @@
                 "text_EFjNw9": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Fine Silk & Blends</p>",
+                    "text": "<p>Fine Silk & Blends<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -238,7 +238,7 @@
                 "text_nn9Xyt": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Oeko-Tex® & Intertek certified</p>",
+                    "text": "<p>Oeko-Tex® & Intertek certified<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -315,7 +315,7 @@
               "type": "icon",
               "settings": {
                 "icon": "silhouette",
-                "image_upload": "shopify://shop_images/heart.png",
+                "image_upload": "shopify:\/\/shop_images\/heart.png",
                 "width": 20,
                 "link": "",
                 "open_in_new_tab": false
@@ -364,7 +364,7 @@
                 "text_exwAMj": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Hand-Rolled Edges</p>",
+                    "text": "<p>Hand-Rolled Edges<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -389,7 +389,7 @@
                 "text_kdXrYr": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Elegant, made to last</p>",
+                    "text": "<p>Elegant, made to last<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -466,7 +466,7 @@
               "type": "icon",
               "settings": {
                 "icon": "silhouette",
-                "image_upload": "shopify://shop_images/leaf.png",
+                "image_upload": "shopify:\/\/shop_images\/leaf.png",
                 "width": 20,
                 "link": "",
                 "open_in_new_tab": false
@@ -515,7 +515,7 @@
                 "text_YPhQhm": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Plastic-Free Packaging</p>",
+                    "text": "<p>Plastic-Free Packaging<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -540,7 +540,7 @@
                 "text_qUk3kJ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Gentle on you & the planet</p>",
+                    "text": "<p>Gentle on you & the planet<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -617,7 +617,7 @@
               "type": "icon",
               "settings": {
                 "icon": "silhouette",
-                "image_upload": "shopify://shop_images/star.png",
+                "image_upload": "shopify:\/\/shop_images\/star.png",
                 "width": 20,
                 "link": "",
                 "open_in_new_tab": false
@@ -666,7 +666,7 @@
                 "text_ecXbJQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Female-Led</p>",
+                    "text": "<p>Female-Led<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -691,7 +691,7 @@
                 "text_t9jAnG": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Designed with empathy & integrity</p>",
+                    "text": "<p>Designed with empathy & integrity<\/p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -768,7 +768,7 @@
       "type": "custom-liquid",
       "name": "t:names.custom_liquid",
       "settings": {
-        "custom_liquid": "<div class=\"home-product-tabs\"><span data-home-tab=\"new\">NEW IN</span> <span data-home-tab=\"best\">BEST SELLERS</span></div>{%style%}.home-product-tabs{display:flex;justify-content:center;gap:20px;}.home-product-tabs [data-home-tab]{cursor:pointer;border-bottom:1px solid #b3b3b3;padding-bottom:4px;font-weight:700;}.home-product-tabs [data-home-tab].is-active{border-bottom:2px solid #000;}#shopify-section-template--26972025389365__product_list_hYVCUJ{display:none;}\n{%endstyle%}<script>(function(){var newTab;var bestTab;var setActive=function(activeTab){if(!newTab||!bestTab)return;newTab.classList.remove('is-active');bestTab.classList.remove('is-active');activeTab.classList.add('is-active');};var showNew=function(){var first=document.getElementById('shopify-section-template--26972025389365__product_list_QV8Gbi');var second=document.getElementById('shopify-section-template--26972025389365__product_list_hYVCUJ');if(!first||!second)return;first.style.display='';second.style.display='none';setActive(newTab);};var showBest=function(){var first=document.getElementById('shopify-section-template--26972025389365__product_list_QV8Gbi');var second=document.getElementById('shopify-section-template--26972025389365__product_list_hYVCUJ');if(!first||!second)return;first.style.display='none';second.style.display='block';setActive(bestTab);};var init=function(){newTab=document.querySelector('[data-home-tab=\\\"new\\\"]');bestTab=document.querySelector('[data-home-tab=\\\"best\\\"]');if(!newTab||!bestTab)return;showNew();newTab.addEventListener('mouseenter',showNew);bestTab.addEventListener('mouseenter',showBest);newTab.addEventListener('focus',showNew);bestTab.addEventListener('focus',showBest);newTab.addEventListener('click',showNew);bestTab.addEventListener('click',showBest);};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}})();</script>",
+        "custom_liquid": "<div class=\"home-product-tabs\"><span data-home-tab=\"new\">NEW IN<\/span> <span data-home-tab=\"best\">BEST SELLERS<\/span><\/div>{%style%}.home-product-tabs{display:flex;justify-content:center;gap:20px;}.home-product-tabs [data-home-tab]{cursor:pointer;border-bottom:1px solid #b3b3b3;padding-bottom:4px;font-weight:700;}.home-product-tabs [data-home-tab].is-active{border-bottom:2px solid #000;}#shopify-section-template--26972025389365__product_list_hYVCUJ{display:none;}\n{%endstyle%}<script>(function(){var newTab;var bestTab;var setActive=function(activeTab){if(!newTab||!bestTab)return;newTab.classList.remove('is-active');bestTab.classList.remove('is-active');activeTab.classList.add('is-active');};var showNew=function(){var first=document.getElementById('shopify-section-template--26972025389365__product_list_QV8Gbi');var second=document.getElementById('shopify-section-template--26972025389365__product_list_hYVCUJ');if(!first||!second)return;first.style.display='';second.style.display='none';setActive(newTab);};var showBest=function(){var first=document.getElementById('shopify-section-template--26972025389365__product_list_QV8Gbi');var second=document.getElementById('shopify-section-template--26972025389365__product_list_hYVCUJ');if(!first||!second)return;first.style.display='none';second.style.display='block';setActive(bestTab);};var init=function(){newTab=document.querySelector('[data-home-tab=\\\"new\\\"]');bestTab=document.querySelector('[data-home-tab=\\\"best\\\"]');if(!newTab||!bestTab)return;showNew();newTab.addEventListener('mouseenter',showNew);bestTab.addEventListener('mouseenter',showBest);newTab.addEventListener('focus',showNew);bestTab.addEventListener('focus',showBest);newTab.addEventListener('click',showNew);bestTab.addEventListener('click',showBest);};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}})();<\/script>",
         "color_scheme": "",
         "section_width": "page-width",
         "padding-block-start": 0,
@@ -816,7 +816,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>Shop New In</h3>",
+                "text": "<h3>Shop New In<\/h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1037,7 +1037,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>Shop Curated Pieces</h3>",
+                "text": "<h3>Shop Curated Pieces<\/h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1241,7 +1241,7 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/asyii-page-home-banner-left.webp",
+            "background_image": "shopify:\/\/shop_images\/asyii-page-home-banner-left.webp",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
@@ -1251,7 +1251,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "shopify://collections/morning-refill",
+            "link": "shopify:\/\/collections\/morning-refill",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
             "padding-block-start": 40,
@@ -1264,7 +1264,7 @@
               "type": "button",
               "settings": {
                 "label": "Shop Our Latest Collection",
-                "link": "shopify://collections/morning-refill",
+                "link": "shopify:\/\/collections\/morning-refill",
                 "open_in_new_tab": false,
                 "style_class": "link",
                 "width": "fit-content",
@@ -1300,7 +1300,7 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/41c46b5e-asyii-printed-abstract-floral-silk-twill-square-sa180625-2-m06.webp",
+            "background_image": "shopify:\/\/shop_images\/41c46b5e-asyii-printed-abstract-floral-silk-twill-square-sa180625-2-m06.webp",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
@@ -1310,7 +1310,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "shopify://collections/all",
+            "link": "shopify:\/\/collections\/all",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
             "padding-block-start": 40,
@@ -1323,7 +1323,7 @@
               "type": "button",
               "settings": {
                 "label": "Shop All",
-                "link": "shopify://collections/all",
+                "link": "shopify:\/\/collections\/all",
                 "open_in_new_tab": false,
                 "style_class": "link",
                 "width": "fit-content",
@@ -1422,7 +1422,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h3>Shop by Categories</h3>",
+                "text": "<h3>Shop by Categories<\/h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1548,7 +1548,7 @@
       "type": "_blocks",
       "blocks": {
         "judge_me_reviews_cards_carousel_4hgV7k": {
-          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/cards_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "show_sample_reviews": false,
             "reviews_selection": "all",
@@ -1648,7 +1648,7 @@
       "type": "custom-liquid",
       "name": "t:names.custom_liquid",
       "settings": {
-        "custom_liquid": "<div class=\"asyii-oc\"><style>.asyii-oc{padding:0 0 6px}.asyii-oc__head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin:0 0 14px}.asyii-oc__title{margin:0;font-size:1.5rem;letter-spacing:.01em}.asyii-oc__all{font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;color:inherit;white-space:nowrap}.asyii-oc__grid{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}.asyii-oc__card{display:block;text-decoration:none;color:inherit}.asyii-oc__media{display:block;aspect-ratio:4/5;overflow:hidden;background:#f4f1ec}.asyii-oc__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.asyii-oc__card:hover .asyii-oc__media img{transform:scale(1.03)}.asyii-oc__name{display:block;margin:9px 0 2px;font-size:.95rem;line-height:1.3}.asyii-oc__sub{display:inline-block;font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:1px;opacity:.75}@media(max-width:749px){.asyii-oc__grid{grid-template-columns:repeat(2,1fr);gap:10px}.asyii-oc__title{font-size:1.25rem}}</style><div class=\"asyii-oc__head\"><h2 class=\"asyii-oc__title\">Shop by occasion</h2><a class=\"asyii-oc__all\" href=\"/pages/gift-shop\">Shop all gifts &rarr;</a></div><div class=\"asyii-oc__grid\"><a class=\"asyii-oc__card\" href=\"/collections/for-the-ones-you-love\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https://cdn.shopify.com/s/files/1/0990/2207/8261/files/f9607f34-asyii-printed-abstract-floral-silk-twill-square-sa180625-2-m03.webp?v=1772444601\" alt=\"For the Ones You Love silk gifts\"></span><span class=\"asyii-oc__name\">For the Ones You Love</span><span class=\"asyii-oc__sub\">Shop the edit</span></a><a class=\"asyii-oc__card\" href=\"/collections/for-the-wedding-moments\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-bloom-corner-double-face-silk-twill-scarf-ss161125-1-m05.webp?v=1776686144\" alt=\"For the Wedding Moments silk gifts\"></span><span class=\"asyii-oc__name\">For the Wedding Moments</span><span class=\"asyii-oc__sub\">Shop the edit</span></a><a class=\"asyii-oc__card\" href=\"/collections/for-the-celebrations\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https://cdn.shopify.com/s/files/1/0990/2207/8261/files/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601\" alt=\"For the Celebrations silk gifts\"></span><span class=\"asyii-oc__name\">For the Celebrations</span><span class=\"asyii-oc__sub\">Shop the edit</span></a><a class=\"asyii-oc__card\" href=\"/pages/gift-shop#little-treats\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https://cdn.shopify.com/s/files/1/0990/2207/8261/files/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601\" alt=\"For the Little Treats silk gifts\"></span><span class=\"asyii-oc__name\">For the Little Treats</span><span class=\"asyii-oc__sub\">Shop the edit</span></a></div></div>",
+        "custom_liquid": "<div class=\"asyii-oc\"><style>.asyii-oc{padding:0 0 6px}.asyii-oc__head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin:0 0 14px}.asyii-oc__title{margin:0;font-size:1.5rem;letter-spacing:.01em}.asyii-oc__all{font-size:.78rem;letter-spacing:.10em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;color:inherit;white-space:nowrap}.asyii-oc__grid{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}.asyii-oc__card{display:block;text-decoration:none;color:inherit}.asyii-oc__media{display:block;aspect-ratio:4\/5;overflow:hidden;background:#f4f1ec}.asyii-oc__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.asyii-oc__card:hover .asyii-oc__media img{transform:scale(1.03)}.asyii-oc__name{display:block;margin:9px 0 2px;font-size:.95rem;line-height:1.3}.asyii-oc__sub{display:inline-block;font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:1px;opacity:.75}@media(max-width:749px){.asyii-oc__grid{grid-template-columns:repeat(2,1fr);gap:10px}.asyii-oc__title{font-size:1.25rem}}<\/style><div class=\"asyii-oc__head\"><h2 class=\"asyii-oc__title\">Shop by occasion<\/h2><a class=\"asyii-oc__all\" href=\"\/pages\/gift-shop\">Shop all gifts &rarr;<\/a><\/div><div class=\"asyii-oc__grid\"><a class=\"asyii-oc__card\" href=\"\/collections\/for-the-ones-you-love\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0990\/2207\/8261\/files\/f9607f34-asyii-printed-abstract-floral-silk-twill-square-sa180625-2-m03.webp?v=1772444601\" alt=\"For the Ones You Love silk gifts\"><\/span><span class=\"asyii-oc__name\">For the Ones You Love<\/span><span class=\"asyii-oc__sub\">Shop the edit<\/span><\/a><a class=\"asyii-oc__card\" href=\"\/collections\/for-the-wedding-moments\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0990\/2207\/8261\/files\/asyii-bloom-corner-double-face-silk-twill-scarf-ss161125-1-m05.webp?v=1776686144\" alt=\"For the Wedding Moments silk gifts\"><\/span><span class=\"asyii-oc__name\">For the Wedding Moments<\/span><span class=\"asyii-oc__sub\">Shop the edit<\/span><\/a><a class=\"asyii-oc__card\" href=\"\/collections\/for-the-celebrations\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0990\/2207\/8261\/files\/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601\" alt=\"For the Celebrations silk gifts\"><\/span><span class=\"asyii-oc__name\">For the Celebrations<\/span><span class=\"asyii-oc__sub\">Shop the edit<\/span><\/a><a class=\"asyii-oc__card\" href=\"\/pages\/gift-shop#little-treats\"><span class=\"asyii-oc__media\"><img loading=\"lazy\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0990\/2207\/8261\/files\/788809a1-asyii-gift-to-self-silk-puffy-scrunchie-aw140925-5-f01-e1769528542615.webp?v=1772444600\" alt=\"For the Little Treats silk gifts\"><\/span><span class=\"asyii-oc__name\">For the Little Treats<\/span><span class=\"asyii-oc__sub\">Shop the edit<\/span><\/a><\/div><\/div>",
         "color_scheme": "",
         "section_width": "page-width",
         "padding-block-start": 40,
