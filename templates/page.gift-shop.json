@@ -162,7 +162,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h3>Shop by occassions</h3>",
+                "text": "<h3>Shop by occasion</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -402,7 +402,7 @@
                 "text_NGtq4b": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Everything we do starts with why</p>",
+                    "text": "<p>Every print begins as a drawing of ours, never a licensed repeat</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -527,7 +527,7 @@
                 "text_YJxfAB": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Made with care</h2>",
+                    "text": "<h2>Hand-finished silk</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -552,7 +552,7 @@
                 "text_wLbtid": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We believe in building better</p>",
+                    "text": "<p>Edges are rolled and stitched by hand, not cut flat</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -677,7 +677,7 @@
                 "text_QrxX8t": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Made with care</h2>",
+                    "text": "<h2>OEKO-TEX certified</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -702,7 +702,7 @@
                 "text_Wkj7cQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We believe in building better</p>",
+                    "text": "<p>Tested for harmful substances and safe against the skin</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -827,7 +827,7 @@
                 "text_mMJfFi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>A team with a goal</h2>",
+                    "text": "<h2>Female-founded</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -852,7 +852,7 @@
                 "text_GzRJy6": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Real people making great products</p>",
+                    "text": "<p>An independent studio, run by women from the start</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1046,7 +1046,7 @@
       },
       "name": "t:names.blog_posts_carousel",
       "settings": {
-        "blog": "",
+        "blog": "asyii-diaries",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
         "post_limit": 5,
