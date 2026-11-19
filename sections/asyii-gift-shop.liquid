@@ -37,6 +37,15 @@
 .asg .gcard .more span{display:inline-block;transition:transform .2s}
 .asg .gcard:hover .more span{transform:translateX(4px)}
 .asg .empty{border:1px dashed #e6e2dc;border-radius:10px;padding:20px;color:#6b6b6b;font-size:13px;background:#fff}
+.asg .ptgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.asg .ptcard{background:#fff;border:1px solid #e6e2dc;border-radius:10px;overflow:hidden;text-decoration:none;color:#1a1a1a;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.asg .ptcard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.asg .ptcard img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f3f0ea}
+.asg .ptcard .pb{padding:12px 13px 14px;display:flex;flex-direction:column;flex:1}
+.asg .ptcard .pn{font-size:12px;line-height:1.5;font-weight:500;margin-bottom:8px;flex:1}
+.asg .ptcard .pp{font-size:12.5px;font-weight:600;color:#8a4b2a}
+.asg .ptcard .pw{font-size:11px;color:#9a9a9a;text-decoration:line-through;margin-left:5px}
+@media(max-width:749px){.asg .ptgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:749px){
  .asg .hero h1{font-size:32px}
  .asg .grid,.asg .ggrid{grid-template-columns:1fr}
@@ -111,7 +120,7 @@
             <h3>For the Little Treats</h3>
             <p>The small, considered upgrades — a soft curl, a quiet morning, a little more calm. Because you don't need a reason.</p>
             <div class="meta">8 pieces · RRP £15–145</div>
-            <a class="btn" href="/collections/for-the-little-treats">Shop the edit →</a>
+            <a class="btn" href="#little-treats">Shop the edit →</a>
           </div>
         </div>
 
@@ -122,13 +131,52 @@
       <h2>Gift by price</h2>
       <p class="sub">Shown at RRP — hand-finished silk at every budget.</p>
       <div class="pricebar">
-        <a href="/collections/for-the-little-treats"><b>Under £50</b><span>Scrunchies · twillies</span></a>
+        <a href="#little-treats"><b>Under £50</b><span>Scrunchies · twillies</span></a>
         <a href="/collections/for-the-ones-you-love"><b>£50–100</b><span>Silk squares · devoré</span></a>
         <a href="/collections/for-the-celebrations"><b>£100–150</b><span>Silk-wool · 90cm</span></a>
         <a href="/collections/for-the-celebrations"><b>£150+</b><span>The gift-box edit</span></a>
       </div>
     </div>
 
+
+    <div class="sec" id="little-treats" style="padding-top:0">
+      <h2>Little treats, just for you</h2>
+      <p class="sub">The small, considered upgrades — hand-rolled silk for everyday moments. RRP £15–145.</p>
+      <div class="ptgrid">
+        <a class="ptcard" href="/products/gift-to-self-silk-puffy-scrunchie-limited-edition">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/788809a1-asyii-gift-to-self-silk-puffy-scrunchie-aw140925-5-f01-e1769528542615.webp?v=1772444600" alt="Gift to Self Silk Puffy Scrunchie" loading="lazy">
+          <span class="pb"><span class="pn">Gift to Self Silk Puffy Scrunchie</span><span class="pp">£20</span></span>
+        </a>
+        <a class="ptcard" href="/products/gift-to-self-silk-wool-square-scarf-limited-edition">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601" alt="Gift to Self Silk-Wool Square Scarf" loading="lazy">
+          <span class="pb"><span class="pn">Gift to Self Silk-Wool Square Scarf</span><span class="pp">£72.50<span class="pw">£145</span></span></span>
+        </a>
+        <a class="ptcard" href="/products/token-of-luck-silk-square-scrunchie">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/14399ce8-asyii-token-of-luck-silk-square-scrunchie-aw140925-4-f01-e1769528476665.webp?v=1772444601" alt="Token of Luck Silk Square Scrunchie" loading="lazy">
+          <span class="pb"><span class="pn">Token of Luck Silk Square Scrunchie</span><span class="pp">£25</span></span>
+        </a>
+        <a class="ptcard" href="/products/printed-botanical-floral-silk-puffy-scrunchie">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/a8d7ea00-asyii-printed-botanical-floral-silk-puffy-scrunchie-aw140925-7-m03.webp?v=1772444603" alt="Printed Botanical Floral Scrunchie" loading="lazy">
+          <span class="pb"><span class="pn">Printed Botanical Floral Scrunchie</span><span class="pp">£20</span></span>
+        </a>
+        <a class="ptcard" href="/products/printed-ethereal-flower-silk-square-scrunchie">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/f9d7e0ec-asyii-printed-ethereal-flower-silk-square-scrunchie-aw140925-6-m02.webp?v=1772444601" alt="Printed Ethereal Flower Scrunchie" loading="lazy">
+          <span class="pb"><span class="pn">Printed Ethereal Flower Scrunchie</span><span class="pp">£25</span></span>
+        </a>
+        <a class="ptcard" href="/products/printed-floral-devore-silk-twilly">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/39096820-asyii-printed-floral-devore-silk-twilly-sa180625-5-l01.webp?v=1772616030" alt="Printed Floral Devoré Twilly" loading="lazy">
+          <span class="pb"><span class="pn">Printed Floral Devoré Twilly</span><span class="pp">£15<span class="pw">£35</span></span></span>
+        </a>
+        <a class="ptcard" href="/products/printed-floral-jacquard-silk-ribbon">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/a36c14d9-asyii-printed-floral-jacquard-silk-ribbon-beige-sa180625-1-m01.webp?v=1772616048" alt="Printed Floral Jacquard Ribbon" loading="lazy">
+          <span class="pb"><span class="pn">Printed Floral Jacquard Ribbon</span><span class="pp">£42</span></span>
+        </a>
+        <a class="ptcard" href="/products/garden-veil-silk-twilly-with-double-face-printed">
+          <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-garden-veil-double-face-silk-twilly-ss161125-5-m02_5eb8ea1c-0e08-470a-b09b-0c39d12eb2bc.webp?v=1776685918" alt="Garden Veil Silk Twilly" loading="lazy">
+          <span class="pb"><span class="pn">Garden Veil Silk Twilly</span><span class="pp">£42</span></span>
+        </a>
+      </div>
+    </div>
     <div class="sec" style="padding-top:0">
       <h2>Gift guides from the journal</h2>
       {%- assign sorted_articles = gift_blog.articles | sort: 'published_at' | reverse -%}
