@@ -1,0 +1,151 @@
+{%- comment -%} ASYII Gifting — auto gift guide (tag: Gifting & Occasions) + static occasion cards. Preview v4. {%- endcomment -%}
+{%- assign gift_blog = blogs['asyii-diaries'] -%}
+{%- assign guide_articles = gift_blog.articles | where: 'tags', 'Gifting & Occasions' | sort: 'published_at' | reverse -%}
+{%- if guide_articles.size > 8 -%}{%- assign guide_articles = guide_articles | slice: 0, 8 -%}{%- endif -%}
+<style>
+.asg{background:#faf9f6;color:#1a1a1a;font-family:'Plus Jakarta Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.asg *{box-sizing:border-box}
+.asg .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.asg .hero{text-align:center;padding:60px 20px 40px;background:#fff;border-bottom:1px solid #e6e2dc}
+.asg .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b6b6b;margin:0 0 16px}
+.asg .hero h1{font-size:44px;font-weight:600;letter-spacing:-.02em;margin:0 0 16px;line-height:1.1}
+.asg .hero p{font-size:15px;color:#6b6b6b;max-width:620px;margin:0 auto;line-height:1.8}
+.asg .hero .quote{font-size:14px;color:#8a7f70;font-style:italic;margin-top:18px}
+.asg .sec{padding:50px 0}
+.asg .sec h2{font-size:24px;font-weight:600;margin:0 0 6px}
+.asg .sec .sub{font-size:13px;color:#6b6b6b;margin:0 0 28px}
+.asg .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.asg .occ{background:#fff;border:1px solid #e6e2dc;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.asg .occ:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.07)}
+.asg .imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#e6e2dc;height:190px}
+.asg .imgs img{width:100%;height:100%;object-fit:cover;display:block;background:#f3f0ea}
+.asg .occ .body{padding:20px 24px 24px;flex:1;display:flex;flex-direction:column}
+.asg .occ h3{font-size:19px;font-weight:600;margin:0 0 8px}
+.asg .occ p{font-size:13px;color:#6b6b6b;line-height:1.7;margin:0 0 14px;flex:1}
+.asg .meta{font-size:11.5px;color:#8a7f70;margin-bottom:15px}
+.asg .btn{display:inline-block;align-self:flex-start;font-size:12.5px;font-weight:600;color:#fff;background:#1a1a1a;text-decoration:none;padding:10px 18px;border-radius:7px}
+.asg .pricebar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.asg .pricebar a{text-align:center;border:1px solid #e6e2dc;border-radius:10px;padding:16px 12px;background:#fff;text-decoration:none;color:#1a1a1a}
+.asg .pricebar a b{display:block;font-size:16px;margin-bottom:3px}
+.asg .pricebar a span{font-size:11.5px;color:#6b6b6b}
+.asg .ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.asg .gcard{display:flex;flex-direction:column;background:#fff;border:1px solid #e6e2dc;border-radius:12px;padding:24px 26px;text-decoration:none;color:#1a1a1a;min-height:190px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.asg .gcard:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.07);border-color:#cfc9bf}
+.asg .gcard .date{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#9a8f80;margin-bottom:10px}
+.asg .gcard b{font-size:17px;font-weight:600;line-height:1.45;display:block;margin-bottom:10px}
+.asg .gcard p{font-size:12.5px;color:#6b6b6b;line-height:1.7;margin:0;flex:1}
+.asg .gcard .more{font-size:12px;font-weight:600;color:#1a1a1a;margin-top:16px;align-self:flex-start}
+.asg .gcard .more span{display:inline-block;transition:transform .2s}
+.asg .gcard:hover .more span{transform:translateX(4px)}
+.asg .empty{border:1px dashed #e6e2dc;border-radius:10px;padding:20px;color:#6b6b6b;font-size:13px;background:#fff}
+@media(max-width:749px){
+ .asg .hero h1{font-size:32px}
+ .asg .grid,.asg .ggrid{grid-template-columns:1fr}
+ .asg .pricebar{grid-template-columns:repeat(2,1fr)}
+ .asg .sec{padding:36px 0}
+}
+</style>
+
+<div class="asg">
+  <div class="hero">
+    <p class="eyebrow">The ASYII Gift Shop</p>
+    <h1>Gifts chosen with<br>thought, not haste.</h1>
+    <p>A silk scarf is more than an accessory — it's a quiet hug, a story, a gesture that lasts. Find the perfect piece for every occasion, and for no occasion at all.</p>
+    <p class="quote">"Find the perfect piece for every occasion ♡"</p>
+  </div>
+
+  <div class="wrap">
+    <div class="sec">
+      <h2>Shop by occasion</h2>
+      <p class="sub">Four ways to give — each one a hand-finished edit, not a discount bin.</p>
+      <div class="grid">
+
+        <div class="occ">
+          <div class="imgs">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/f9607f34-asyii-printed-abstract-floral-silk-twill-square-sa180625-2-m03.webp?v=1772444601" alt="Printed abstract floral silk twill square">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/6198ae50-asyii-printed-floral-silk-twill-square-butter-yellow-sa180625-3-m05.webp?v=1772444600" alt="Printed floral silk twill square">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/2bb1c279-asyii-printed-floral-devore-silk-square-sa180625-4-m01.webp?v=1772615999" alt="Printed floral devore silk square">
+          </div>
+          <div class="body">
+            <h3>For the Ones You Love</h3>
+            <p>No occasion needed. Just a little something to say "I'm glad you're in my life."</p>
+            <div class="meta">13 pieces · RRP £35–138</div>
+            <a class="btn" href="/collections/for-the-ones-you-love">Shop the edit →</a>
+          </div>
+        </div>
+
+        <div class="occ">
+          <div class="imgs">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601" alt="Gift to Self silk-wool square scarf">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/92b5a84b-asyii-sweet-prelude-silk-wool-long-wrap-sw140925-3-m01-e1769528199361.webp?v=1772444601" alt="Sweet Prelude silk-wool long wrap">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/788809a1-asyii-gift-to-self-silk-puffy-scrunchie-aw140925-5-f01-e1769528542615.webp?v=1772444600" alt="Gift to Self silk puffy scrunchie">
+          </div>
+          <div class="body">
+            <h3>For the Celebrations</h3>
+            <p>Birthdays, anniversaries, or just because. A piece that says "I see you, I cherish you."</p>
+            <div class="meta">10 pieces · RRP £35–145</div>
+            <a class="btn" href="/collections/for-the-celebrations">Shop the edit →</a>
+          </div>
+        </div>
+
+        <div class="occ">
+          <div class="imgs">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-bloom-corner-double-face-silk-twill-scarf-ss161125-1-m05.webp?v=1776686144" alt="Bloom Corner silk twill square">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-garden-veil-double-face-silk-square-scarf-ss161125-2-m01.webp?v=1776693999" alt="Garden Veil silk square scarf">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/asyii-bow-laced-triangle-silk-scarf-ss161125-3-m03.webp?v=1776686025" alt="Bow-Laced silk-cotton triangle scarf">
+          </div>
+          <div class="body">
+            <h3>For the Wedding Moments</h3>
+            <p>From the one saying "yes" to the ones standing beside her — softness for every role on the big day.</p>
+            <div class="meta">10 pieces · RRP £35–138</div>
+            <a class="btn" href="/collections/for-the-wedding-moments">Shop the edit →</a>
+          </div>
+        </div>
+
+        <div class="occ">
+          <div class="imgs">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/9d2c044b-asyii-gift-to-self-silk-wool-square-scarf-sw140925-1-m01-e1769528572749.webp?v=1772444601" alt="Gift to Self silk-wool square scarf">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/788809a1-asyii-gift-to-self-silk-puffy-scrunchie-aw140925-5-f01-e1769528542615.webp?v=1772444600" alt="Gift to Self silk puffy scrunchie">
+            <img src="https://cdn.shopify.com/s/files/1/0990/2207/8261/files/14399ce8-asyii-token-of-luck-silk-square-scrunchie-aw140925-4-f01-e1769528476665.webp?v=1772444601" alt="Token of Luck silk square scrunchie">
+          </div>
+          <div class="body">
+            <h3>For the Little Treats</h3>
+            <p>The small, considered upgrades — a soft curl, a quiet morning, a little more calm. Because you don't need a reason.</p>
+            <div class="meta">8 pieces · RRP £15–145</div>
+            <a class="btn" href="/collections/for-the-little-treats">Shop the edit →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" style="padding-top:0">
+      <h2>Gift by price</h2>
+      <p class="sub">Shown at RRP — hand-finished silk at every budget.</p>
+      <div class="pricebar">
+        <a href="/collections/for-the-little-treats"><b>Under £50</b><span>Scrunchies · twillies</span></a>
+        <a href="/collections/for-the-ones-you-love"><b>£50–100</b><span>Silk squares · devoré</span></a>
+        <a href="/collections/for-the-celebrations"><b>£100–150</b><span>Silk-wool · 90cm</span></a>
+        <a href="/collections/for-the-celebrations"><b>£150+</b><span>The gift-box edit</span></a>
+      </div>
+    </div>
+
+    <div class="sec" style="padding-top:0">
+      <h2>Gift guides from the journal</h2>
+      {%- if guide_articles.size > 0 -%}
+      <div class="ggrid">
+        {%- for article in guide_articles -%}
+        <a class="gcard" href="{{ article.url }}">
+          <span class="date">{{ article.published_at | date: '%d %b %Y' }}</span>
+          <b>{{ article.title | escape }}</b>
+          <p>{{ article.excerpt | strip_html | strip | truncate: 150 }}</p>
+          <span class="more">Read the story <span>→</span></span>
+        </a>
+        {%- endfor -%}
+      </div>
+      {%- else -%}
+      <div class="empty">Gift guides are on their way.</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
