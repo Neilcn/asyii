@@ -287,7 +287,7 @@
       "type": "custom-liquid",
       "name": "t:names.custom_liquid",
       "settings": {
-        "custom_liquid": "<div class=\"asyii-price-intro\"><h2>Gift by price</h2><p>Every piece is independently designed and hand-finished in silk — OEKO-TEX certified, from a female-founded studio.</p></div><style>\n.asyii-price-intro{text-align:center;padding:44px 0 4px}\n.asyii-price-intro h2{font-size:1.5rem;line-height:1.25;margin:0 0 10px}\n.asyii-price-intro p{font-size:.9rem;line-height:1.6;opacity:.72;max-width:54ch;margin:0 auto}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:0!important;padding-block-start:22px!important;padding-block-end:44px!important}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 0%!important;padding:2px 22px!important;min-width:0}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.14)}\n[id$=\"__section_UmmkqR\"] .icon-block__media{width:22px!important;height:22px!important;opacity:.5}\n[id$=\"__section_UmmkqR\"] h2{font-size:13px!important;letter-spacing:.11em!important;text-transform:uppercase;line-height:1.35;margin:0!important}\n[id$=\"__section_UmmkqR\"] p{font-size:13px!important;line-height:1.5;opacity:.72;margin:0!important}\n@media(max-width:749px){\n  .asyii-price-intro{padding:34px 0 0}\n  .asyii-price-intro h2{font-size:1.25rem}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:22px 0!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:center!important;padding-block-start:16px!important;padding-block-end:34px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 46%!important;padding:0 10px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:none}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block:nth-child(n+3){border-top:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.12);padding-top:20px}\n}\n</style>",
+        "custom_liquid": "<div class=\"asyii-price-intro\"><h2>Gift by price</h2><p>Every piece is independently designed and hand-finished in silk — OEKO-TEX certified, from a female-founded studio.</p></div><style>\n[id$=\"__section_UmmkqR\"] .group-block p + p{margin-top:10px!important;font-size:12px!important;letter-spacing:.08em!important;text-transform:uppercase!important;text-decoration:underline!important;text-underline-offset:3px!important;opacity:.9!important}\n.asyii-price-intro{text-align:center;padding:44px 0 4px}\n.asyii-price-intro h2{font-size:1.5rem;line-height:1.25;margin:0 0 10px}\n.asyii-price-intro p{font-size:.9rem;line-height:1.6;opacity:.72;max-width:54ch;margin:0 auto}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:0!important;padding-block-start:22px!important;padding-block-end:44px!important}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 0%!important;padding:2px 22px!important;min-width:0}\n[id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.14)}\n[id$=\"__section_UmmkqR\"] .icon-block__media{width:22px!important;height:22px!important;opacity:.5}\n[id$=\"__section_UmmkqR\"] h2{font-size:13px!important;letter-spacing:.11em!important;text-transform:uppercase;line-height:1.35;margin:0!important}\n[id$=\"__section_UmmkqR\"] p{font-size:13px!important;line-height:1.5;opacity:.72;margin:0!important}\n@media(max-width:749px){\n  .asyii-price-intro{padding:34px 0 0}\n  .asyii-price-intro h2{font-size:1.25rem}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper{gap:22px 0!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:center!important;padding-block-start:16px!important;padding-block-end:34px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block{flex:1 1 46%!important;padding:0 10px!important}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block+.group-block{border-inline-start:none}\n  [id$=\"__section_UmmkqR\"] .section-content-wrapper>.group-block:nth-child(n+3){border-top:1px solid rgb(var(--color-foreground-rgb,0 0 0)/.12);padding-top:20px}\n}\n</style>",
         "color_scheme": "",
         "section_width": "page-width",
         "padding-block-start": 0,
@@ -327,7 +327,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "",
+            "link": "shopify://collections/little-silk",
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
@@ -388,7 +388,7 @@
                 "text_q6nt9K": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Under £30</h2>",
+                    "text": "<h2>£20 – £35</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -413,7 +413,7 @@
                 "text_NGtq4b": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Scrunchies and small silk pieces</p>",
+                    "text": "<p>Scrunchies, twillies and little squares</p><p>Shop the edit →</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -477,7 +477,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "",
+            "link": "shopify://collections/everyday-silk",
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
@@ -538,7 +538,7 @@
                 "text_YJxfAB": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>£30 – £50</h2>",
+                    "text": "<h2>£42 – £45</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -563,7 +563,7 @@
                 "text_wLbtid": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Twillies, ribbons and 45cm squares</p>",
+                    "text": "<p>Twillies, ribbons and a 45cm square</p><p>Shop the edit →</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -627,7 +627,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "",
+            "link": "shopify://collections/signature-silk",
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
@@ -688,7 +688,7 @@
                 "text_QrxX8t": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>£50 – £70</h2>",
+                    "text": "<h2>£79 – £85</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -713,7 +713,7 @@
                 "text_Wkj7cQ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Printed twill squares and devoré</p>",
+                    "text": "<p>Printed squares and triangle scarves</p><p>Shop the edit →</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -777,7 +777,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "link": "",
+            "link": "shopify://collections/statement-silk",
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
@@ -838,7 +838,7 @@
                 "text_mMJfFi": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>£70 – £85</h2>",
+                    "text": "<h2>£120 – £145</h2>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -863,7 +863,7 @@
                 "text_GzRJy6": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>90cm squares, silk-wool and triangle scarves</p>",
+                    "text": "<p>90cm hand-rolled squares and silk-wool wraps</p><p>Shop the edit →</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
