@@ -26,7 +26,7 @@
             "thumbnail_position": "left",
             "thumbnail_width": 57,
             "thumbnail_radius": 0,
-            "aspect_ratio": "1/1.25",
+            "aspect_ratio": "1\/1.25",
             "constrain_to_viewport": false,
             "media_fit": "cover",
             "media_radius": 0,
@@ -72,7 +72,7 @@
               "type": "text",
               "name": "t:names.title",
               "settings": {
-                "text": "<h3>{{ closest.product.title }}</h3>",
+                "text": "<h3>{{ closest.product.title }}<\/h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -294,7 +294,7 @@
                       "type": "icon",
                       "settings": {
                         "icon": "silhouette",
-                        "image_upload": "shopify://shop_images/stamp.png",
+                        "image_upload": "shopify:\/\/shop_images\/stamp.png",
                         "width": 20,
                         "link": "",
                         "open_in_new_tab": false
@@ -304,7 +304,7 @@
                     "trust_title_1": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Fine Silk & Blends</p>",
+                        "text": "<p>Fine Silk & Blends<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -329,7 +329,7 @@
                     "trust_sub_1": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Oeko-Tex® & Intertek certified</p>",
+                        "text": "<p>Oeko-Tex® & Intertek certified<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -401,7 +401,7 @@
                       "type": "icon",
                       "settings": {
                         "icon": "silhouette",
-                        "image_upload": "shopify://shop_images/heart.png",
+                        "image_upload": "shopify:\/\/shop_images\/heart.png",
                         "width": 20,
                         "link": "",
                         "open_in_new_tab": false
@@ -411,7 +411,7 @@
                     "trust_title_2": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Hand-Rolled Edges</p>",
+                        "text": "<p>Hand-Rolled Edges<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -436,7 +436,7 @@
                     "trust_sub_2": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Elegant, made to last</p>",
+                        "text": "<p>Elegant, made to last<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -508,7 +508,7 @@
                       "type": "icon",
                       "settings": {
                         "icon": "silhouette",
-                        "image_upload": "shopify://shop_images/leaf.png",
+                        "image_upload": "shopify:\/\/shop_images\/leaf.png",
                         "width": 20,
                         "link": "",
                         "open_in_new_tab": false
@@ -518,7 +518,7 @@
                     "trust_title_3": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Plastic-Free Packaging</p>",
+                        "text": "<p>Plastic-Free Packaging<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -543,7 +543,7 @@
                     "trust_sub_3": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Gentle on you & the planet</p>",
+                        "text": "<p>Gentle on you & the planet<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -615,7 +615,7 @@
                       "type": "icon",
                       "settings": {
                         "icon": "silhouette",
-                        "image_upload": "shopify://shop_images/star.png",
+                        "image_upload": "shopify:\/\/shop_images\/star.png",
                         "width": 20,
                         "link": "",
                         "open_in_new_tab": false
@@ -625,7 +625,7 @@
                     "trust_title_4": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Female-Led</p>",
+                        "text": "<p>Female-Led<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -650,7 +650,7 @@
                     "trust_sub_4": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Designed with empathy & integrity</p>",
+                        "text": "<p>Designed with empathy & integrity<\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "center",
@@ -798,7 +798,7 @@
                     "text_VdG98J": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Details:</p>{{ closest.product.metafields.custom.craftsmanship | metafield_tag }}<p>Care:</p>{{ closest.product.metafields.shopify[\"care-instructions\"] | metafield_tag: field: 'label' }}",
+                        "text": "<p>Details:<\/p>{{ closest.product.metafields.custom.craftsmanship | metafield_tag }}<p>Care:<\/p>{{ closest.product.metafields.shopify[\"care-instructions\"] | metafield_tag: field: 'label' }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -837,7 +837,7 @@
                     "text_qLGEN9": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>UK: Free shipping</p><p>EU : Free shipping £120(€139) and over</p><p>All Other Countries: Calculated at checkout. Duties and taxes may apply.</p><p>Easy returns within 14 days of delivery.</p><p><br/><strong>[View full policy] : </strong><a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\"><strong>Shipping & Delivery </strong></a><strong>and </strong><a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\"><strong>Refund Policy</strong></a></p>",
+                        "text": "<p>UK&amp;EU: Free shipping<\/p><p>All Other Countries: Calculated at checkout. Duties and taxes may apply.<\/p><p>Easy returns within 14 days of delivery.<\/p><p><br\/><strong>[View full policy] : <\/strong><a href=\"\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\"><strong>Shipping & Delivery <\/strong><\/a><strong>and <\/strong><a href=\"\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\"><strong>Refund Policy<\/strong><\/a><\/p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -905,7 +905,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>{{ closest.product.metafields.custom.collection_name | metafield_text }}</p>",
+            "text": "<p>{{ closest.product.metafields.custom.collection_name | metafield_text }}<\/p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -931,7 +931,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p></p><p>{{ closest.product.metafields.custom.collections_description | metafield_text }}</p>",
+            "text": "<p><\/p><p>{{ closest.product.metafields.custom.collections_description | metafield_text }}<\/p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1055,7 +1055,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>{{ closest.product.metafields.custom.section_heading_1.value }}</h2>",
+                "text": "<h2>{{ closest.product.metafields.custom.section_heading_1.value }}<\/h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1081,7 +1081,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>{{ closest.product.metafields.custom.section_text_1.value }}</p>",
+                "text": "<p>{{ closest.product.metafields.custom.section_text_1.value }}<\/p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1107,7 +1107,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>{{ closest.product.metafields.custom.section_heading_2.value }}</h2>",
+                "text": "<h2>{{ closest.product.metafields.custom.section_heading_2.value }}<\/h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1132,7 +1132,7 @@
             "text_9UVyJm": {
               "type": "text",
               "settings": {
-                "text": "<p>{{ closest.product.metafields.custom.section_text_2.value }}</p>",
+                "text": "<p>{{ closest.product.metafields.custom.section_text_2.value }}<\/p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1203,7 +1203,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h3><strong>Frequently asked questions</strong></h3>",
+            "text": "<h3><strong>Frequently asked questions<\/strong><\/h3>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -1256,7 +1256,7 @@
                 "text_r47yqT": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Yes. Our scarves are crafted from 100% mulberry silk or our signature silk-wool blend — both naturally hypoallergenic, static-free, and gentle even on the most sensitive skin.</p>",
+                    "text": "<p>Yes. Our scarves are crafted from 100% mulberry silk or our signature silk-wool blend — both naturally hypoallergenic, static-free, and gentle even on the most sensitive skin.<\/p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -1295,7 +1295,7 @@
                 "text_Ethmcj": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We recommend dry cleaning or gentle hand-washing in cold water with a silk-specific detergent. Air dry away from direct sunlight. Our double-faced prints are designed to retain their vibrancy with proper care.<br/></p>",
+                    "text": "<p>We recommend dry cleaning or gentle hand-washing in cold water with a silk-specific detergent. Air dry away from direct sunlight. Our double-faced prints are designed to retain their vibrancy with proper care.<br\/><\/p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -1336,7 +1336,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We focus on two things: uncompromising comfort and original artistry. Every piece features our signature static-free, skin-softening fabric, paired with hand-finished details like double-sided printing and hand-rolled hems — craftsmanship you can feel.<br/></p>",
+                    "text": "<p>We focus on two things: uncompromising comfort and original artistry. Every piece features our signature static-free, skin-softening fabric, paired with hand-finished details like double-sided printing and hand-rolled hems — craftsmanship you can feel.<br\/><\/p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -1377,7 +1377,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes. Our silk scarves are breathable and lightweight for warmer days, while our silk-wool blend offers just the right warmth without bulk for cooler seasons — making them a true year-round companion.</p>",
+                    "text": "<p>Yes. Our silk scarves are breathable and lightweight for warmer days, while our silk-wool blend offers just the right warmth without bulk for cooler seasons — making them a true year-round companion.<\/p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -1416,7 +1416,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Still have questions?</p><p>See our <a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">full FAQ</a> or <a href=\"/pages/contact\" title=\"Contact Us\">chat with our team</a></p>",
+            "text": "<p>Still have questions?<\/p><p>See our <a href=\"\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">full FAQ<\/a> or <a href=\"\/pages\/contact\" title=\"Contact Us\">chat with our team<\/a><\/p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1480,7 +1480,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>You may also like</h3>",
+            "text": "<h3>You may also like<\/h3>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1616,7 +1616,7 @@
                     "text_CayfE3": {
                       "type": "text",
                       "settings": {
-                        "text": "<h4>{{ closest.product.title }}</h4>",
+                        "text": "<h4>{{ closest.product.title }}<\/h4>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1763,7 +1763,7 @@
       "type": "_blocks",
       "blocks": {
         "judge_me_reviews_review_widget_gPwB3t": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
             "max_width": 1200,
