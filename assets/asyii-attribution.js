@@ -34,7 +34,14 @@
       }})
     }).then(function(r){ return r.json(); }).then(function(){
       pushGA4(campaign, content, variantId);
-      location.href = '/cart';
+      // Open theme cart drawer instead of navigating away.
+      var drawer = DC.querySelector('cart-drawer');
+      if (drawer && typeof drawer.open === 'function') {
+        drawer.open();
+      } else {
+        try { DC.dispatchEvent(new CustomEvent('cart:add', { bubbles: true,
+          detail: { resource: { item_count: 1 } } })); } catch (e) {}
+      }
     }).catch(function(err){ console.error('asyii add-to-cart failed', err); });
   }
 
