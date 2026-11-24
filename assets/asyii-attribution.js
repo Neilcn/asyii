@@ -1,5 +1,15 @@
 (function () {
   'use strict';
+
+  // Black 'Add to cart' button style for blog cards (double-class beats article CSS)
+  if (!DC.getElementById('asyii-addtocart-style')) {
+    var st = DC.createElement('style');
+    st.id = 'asyii-addtocart-style';
+    st.textContent = '.asyii-card .asyii-card__cta.add-to-cart{display:block;width:100%;padding:12px 16px;background:#111;color:#fff;border:0;font:600 13px/1 -apple-system,BlinkMacSystemFont,\'Segoe UI\',sans-serif;letter-spacing:.03em;text-align:center;cursor:pointer;margin-top:.4rem;transition:background .15s}'
+      + '.asyii-card .asyii-card__cta.add-to-cart:hover{background:#000}';
+    DC.head.appendChild(st);
+  }
+
   var DC = document;
   function params(url) {
     try { return new URL(url, location.href).searchParams; } catch (e) { return new URLSearchParams(); }
@@ -57,7 +67,7 @@
 
   // ---- decision-page Add to bag buttons (already have data attributes) ----
   DC.addEventListener('click', function (e) {
-    var b = e.target.closest('.add-to-bag');
+    var b = e.target.closest('.add-to-cart');
     if (!b) return;
     e.preventDefault();
     addToCart(b.dataset.variantId, b.dataset.utmCampaign, b.dataset.utmContent);
@@ -99,8 +109,8 @@
             cta.setAttribute('data-variant-id', vid);
             cta.setAttribute('data-utm-campaign', campaign);
             cta.setAttribute('data-utm-content', handle);
-            cta.classList.add('asyii-card__cta--add');
-            cta.textContent = 'Add to bag';
+            cta.classList.add('add-to-cart');
+            cta.textContent = 'Add to cart';
             cta.addEventListener('click', function (ev) {
               ev.preventDefault();
               ev.stopPropagation();
