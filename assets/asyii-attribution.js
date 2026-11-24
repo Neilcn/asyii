@@ -1,7 +1,8 @@
 (function () {
   'use strict';
+  var DC = document;
 
-  // Black 'Add to cart' button style for blog cards (double-class beats article CSS)
+  // Black 'Add to cart' style for blog cards (double-class beats article CSS)
   if (!DC.getElementById('asyii-addtocart-style')) {
     var st = DC.createElement('style');
     st.id = 'asyii-addtocart-style';
@@ -10,10 +11,6 @@
     DC.head.appendChild(st);
   }
 
-  var DC = document;
-  function params(url) {
-    try { return new URL(url, location.href).searchParams; } catch (e) { return new URLSearchParams(); }
-  }
   function buildUrl(base, campaign, content) {
     var u = new URL(base, location.href);
     u.searchParams.set('utm_source', 'asyii');
@@ -22,10 +19,12 @@
     u.searchParams.set('utm_content', content);
     return u.href;
   }
+
   function money(n, currency) {
-    try { return new Intl.NumberFormat(undefined, {style:'currency', currency:currency}).format(n/100); }
-    catch (e) { return (n/100).toFixed(2) + ' ' + currency; }
+    try { return new Intl.NumberFormat(undefined, { style: 'currency', currency: currency }).format(n / 100); }
+    catch (e) { return (n / 100).toFixed(2) + ' ' + currency; }
   }
+
   function pushGA4(campaign, content, variantId) {
     if (window.dataLayer) window.dataLayer.push({
       event: 'add_to_cart',
@@ -34,62 +33,70 @@
       attribution_content: content
     });
   }
+
+  function refreshCartAndOpenDrawer() {
+    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (cart) {
+        try {
+          DC.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
+            resource: cart, sourceId: 'asyii-attribution', data: { source: 'asyii-attribution' }
+          } }));
+        } catch (e) {}
+        var drawer = DC.querySelector('cart-drawer-component');
+        if (drawer && typeof drawer.open === 'function') drawer.open();
+      })
+      .catch(function () {
+        var drawer = DC.querySelector('cart-drawer-component');
+        if (drawer && typeof drawer.open === 'function') drawer.open();
+      });
+  }
+
   function addToCart(variantId, campaign, content) {
     return fetch('/cart/add.js', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ id: Number(variantId), quantity: 1, properties: {
         _attribution_campaign: campaign,
         _attribution_content: content
-      }})
-    }).then(function(r){ return r.json(); }).then(function(){
-      pushGA4(campaign, content, variantId);
-      // Refresh cart + open the theme cart drawer.
-      // NOTE: the custom element tag is 'cart-drawer-component' (not 'cart-drawer'),
-      // and the theme refreshes cart items on ThemeEvents.cartUpdate ('cart:update').
-      fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
-        .then(function (r) { return r.json(); })
-        .then(function (cart) {
-          try {
-            DC.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
-              resource: cart, sourceId: 'asyii-attribution', data: { source: 'asyii-attribution' }
-            } }));
-          } catch (e) {}
-          var drawer = DC.querySelector('cart-drawer-component');
-          if (drawer && typeof drawer.open === 'function') drawer.open();
-        }).catch(function () {
-          var drawer = DC.querySelector('cart-drawer-component');
-          if (drawer && typeof drawer.open === 'function') drawer.open();
-        });
-      }
-    }).catch(function(err){ console.error('asyii add-to-cart failed', err); });
+      } })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function () {
+        pushGA4(campaign, content, variantId);
+        refreshCartAndOpenDrawer();
+      })
+      .catch(function (err) { console.error('asyii add-to-cart failed', err); });
   }
 
-  // ---- decision-page Add to bag buttons (already have data attributes) ----
+  // Single delegated listener: covers decision-page buttons AND blog card CTAs.
   DC.addEventListener('click', function (e) {
     var b = e.target.closest('.add-to-cart');
     if (!b) return;
     e.preventDefault();
-    addToCart(b.dataset.variantId, b.dataset.utmCampaign, b.dataset.utmContent);
+    e.stopPropagation();
+    if (b.dataset.busy === '1') return;
+    b.dataset.busy = '1';
+    addToCart(b.dataset.variantId, b.dataset.utmCampaign, b.dataset.utmContent)
+      .then(function () { b.dataset.busy = '0'; });
   });
 
-  // ---- blog product cards: UTM + live price + Add to bag ----
-  var cards = DC.querySelectorAll('.asyii-card');
+  // ---- blog product cards: UTM + live price + Add to cart ----
+  var cards = DC.querySelectorAll('a.asyii-card');
   if (!cards.length) return;
   cards.forEach(function (card) {
     var link = card.getAttribute('href') || '';
     var handle = (link.split('/products/')[1] || '').split(/[?#]/)[0];
     if (!handle) return;
-    // campaign = blog handle from page path
     var campaign = 'blog-' + (location.pathname.split('/blogs/')[1] || 'article').split('/').pop();
     // 1) UTM on whole-card link
     card.setAttribute('href', buildUrl(link, campaign, handle));
-    // 2) live price + compare-at (from product JS, current currency)
-    fetch('/products/' + encodeURIComponent(handle) + '.js', {headers:{'Accept':'application/json'}})
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
+    // 2) live price + compare-at + Add to cart (from product JS, current currency)
+    fetch('/products/' + encodeURIComponent(handle) + '.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
         if (!d) return;
-        var cur = d.currency || (window.Shopify && Shopify.currency && Shopify.currency.active) || 'GBP';
+        var cur = (d.currency) || (window.Shopify && Shopify.currency && Shopify.currency.active) || 'GBP';
         var priceEl = card.querySelector('.asyii-card__price');
         if (priceEl && d.price != null) {
           priceEl.textContent = money(d.price, cur);
@@ -101,23 +108,21 @@
             priceEl.insertBefore(s, priceEl.firstChild);
           }
         }
-        // 3) Add to bag button (card is an <a>, so use a sibling button overlay)
-        if (d.variants && d.variants.length) {
-          var vid = d.variants[0].id;
-          var cta = card.querySelector('.asyii-card__cta');
-          if (cta) {
-            cta.setAttribute('data-variant-id', vid);
-            cta.setAttribute('data-utm-campaign', campaign);
-            cta.setAttribute('data-utm-content', handle);
-            cta.classList.add('add-to-cart');
-            cta.textContent = 'Add to cart';
-            cta.addEventListener('click', function (ev) {
-              ev.preventDefault();
-              ev.stopPropagation();
-              addToCart(vid, campaign, handle);
-            });
-          }
+        var vid = d.variants && d.variants.length ? d.variants[0].id : null;
+        if (!vid) return;
+        var cta = card.querySelector('.asyii-card__cta');
+        if (!cta) {
+          cta = DC.createElement('span');
+          cta.className = 'asyii-card__cta';
+          var body = card.querySelector('.asyii-card__body') || card;
+          body.appendChild(cta);
         }
-      }).catch(function(){ /* keep static card as fallback */ });
+        cta.setAttribute('data-variant-id', vid);
+        cta.setAttribute('data-utm-campaign', campaign);
+        cta.setAttribute('data-utm-content', handle);
+        cta.classList.add('add-to-cart');
+        cta.textContent = 'Add to cart';
+      })
+      .catch(function () { /* keep static card as fallback */ });
   });
 })();
