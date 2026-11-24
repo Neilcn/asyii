@@ -34,13 +34,23 @@
       }})
     }).then(function(r){ return r.json(); }).then(function(){
       pushGA4(campaign, content, variantId);
-      // Open theme cart drawer instead of navigating away.
-      var drawer = DC.querySelector('cart-drawer');
-      if (drawer && typeof drawer.open === 'function') {
-        drawer.open();
-      } else {
-        try { DC.dispatchEvent(new CustomEvent('cart:add', { bubbles: true,
-          detail: { resource: { item_count: 1 } } })); } catch (e) {}
+      // Refresh cart + open the theme cart drawer.
+      // NOTE: the custom element tag is 'cart-drawer-component' (not 'cart-drawer'),
+      // and the theme refreshes cart items on ThemeEvents.cartUpdate ('cart:update').
+      fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          try {
+            DC.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: {
+              resource: cart, sourceId: 'asyii-attribution', data: { source: 'asyii-attribution' }
+            } }));
+          } catch (e) {}
+          var drawer = DC.querySelector('cart-drawer-component');
+          if (drawer && typeof drawer.open === 'function') drawer.open();
+        }).catch(function () {
+          var drawer = DC.querySelector('cart-drawer-component');
+          if (drawer && typeof drawer.open === 'function') drawer.open();
+        });
       }
     }).catch(function(err){ console.error('asyii add-to-cart failed', err); });
   }
