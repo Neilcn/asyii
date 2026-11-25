@@ -32,6 +32,13 @@
       attribution_campaign: campaign,
       attribution_content: content
     });
+    try {
+      if (window.gtag) window.gtag('event', 'onsite_add_to_cart', {
+        attribution_campaign: campaign,
+        attribution_content: content,
+        item_id: String(variantId)
+      });
+    } catch (e) {}
   }
 
   function refreshCartAndOpenDrawer() {
