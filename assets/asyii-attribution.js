@@ -33,7 +33,13 @@
       attribution_content: content
     });
     try {
-      if (typeof window.gtag === 'function') window.gtag('event', 'add_to_cart', {
+      if (typeof window.gtag !== 'function') {
+        // gtag.js loads async via the Shopify Google channel but may not have
+        // exposed window.gtag yet - create the official dataLayer shim so the
+        // command is queued and processed when the library is ready.
+        window.gtag = function () { (window.dataLayer = window.dataLayer || []).push(arguments); };
+      }
+      window.gtag('event', 'add_to_cart', {
         send_to: 'G-4FZL0684CZ',
         attribution_campaign: campaign,
         attribution_content: content,
