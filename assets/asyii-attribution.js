@@ -89,6 +89,59 @@
       .then(function () { b.dataset.busy = '0'; });
   });
 
+  // ---- holiday-post legacy product cards (table cells: div.asyii-product-card) ----
+  var legacy = DC.querySelectorAll('.asyii-product-card');
+  legacy.forEach(function (card) {
+    var firstLink = card.querySelector('a[href*="/products/"]');
+    if (!firstLink || card.dataset.asyiiUpgraded) return;
+    card.dataset.asyiiUpgraded = '1';
+    var handle = (firstLink.getAttribute('href').split('/products/')[1] || '').split(/[?#]/)[0];
+    if (!handle) return;
+    var lcamp = 'blog-' + (location.pathname.split('/blogs/')[1] || 'article').split('/').pop();
+    // UTM on every product link in this card
+    card.querySelectorAll('a[href*="/products/"]').forEach(function (a) {
+      a.setAttribute('href', buildUrl(a.getAttribute('href'), lcamp, handle));
+    });
+    fetch('/products/' + encodeURIComponent(handle) + '.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        var lcur = (d.currency) || (window.Shopify && Shopify.currency && Shopify.currency.active) || 'GBP';
+        // legacy price = bare <span> right after the name link
+        var nameEl = card.querySelector('a.asyii-card__name') || card.querySelector('a');
+        var priceEl = nameEl ? nameEl.nextElementSibling : null;
+        if (priceEl && priceEl.tagName === 'SPAN' && d.price != null) {
+          priceEl.textContent = money(d.price, lcur);
+          if (d.compare_at_price && d.compare_at_price > d.price) {
+            var ls = DC.createElement('s');
+            ls.style.marginRight = '8px';
+            ls.style.opacity = '.6';
+            ls.textContent = money(d.compare_at_price, lcur);
+            priceEl.insertBefore(ls, priceEl.firstChild);
+            var lpct = Math.round((1 - d.price / d.compare_at_price) * 100);
+            var loff = DC.createElement('span');
+            loff.style.color = '#a4442e';
+            loff.style.fontWeight = '600';
+            loff.style.marginLeft = '8px';
+            loff.textContent = '-' + lpct + '%';
+            priceEl.appendChild(loff);
+          }
+        }
+        var lvid = d.variants && d.variants.length ? d.variants[0].id : null;
+        if (!lvid) return;
+        var lbtn = DC.createElement('button');
+        lbtn.type = 'button';
+        lbtn.className = 'add-to-cart';
+        lbtn.style.cssText = 'display:block;width:100%;margin-top:10px;padding:12px 16px;background:#111;color:#fff;border:0;font:600 13px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.03em;text-align:center;cursor:pointer;border-radius:4px;';
+        lbtn.textContent = 'Add to cart';
+        lbtn.setAttribute('data-variant-id', lvid);
+        lbtn.setAttribute('data-utm-campaign', lcamp);
+        lbtn.setAttribute('data-utm-content', handle);
+        card.appendChild(lbtn);
+      })
+      .catch(function () { /* keep static card as fallback */ });
+  });
+
   // ---- blog product cards: UTM + live price + Add to cart ----
   var cards = DC.querySelectorAll('a.asyii-card');
   if (!cards.length) return;
