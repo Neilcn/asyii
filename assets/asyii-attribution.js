@@ -33,7 +33,8 @@
       attribution_content: content
     });
     try {
-      if (window.gtag) window.gtag('event', 'onsite_add_to_cart', {
+      if (typeof window.gtag === 'function') window.gtag('event', 'add_to_cart', {
+        send_to: 'G-4FZL0684CZ',
         attribution_campaign: campaign,
         attribution_content: content,
         item_id: String(variantId)
