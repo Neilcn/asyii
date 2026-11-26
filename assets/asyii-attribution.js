@@ -152,6 +152,33 @@
       .catch(function () { /* keep static card as fallback */ });
   });
 
+  // ---- mobile product carousel: swipe + snap + peek (all card structures) ----
+  if (!DC.getElementById('asyii-carousel-style')) {
+    var cs = DC.createElement('style');
+    cs.id = 'asyii-carousel-style';
+    cs.textContent = '@media (max-width:700px){'
+      + '.asyii-swipe-hint{display:block;text-align:center;font:600 10px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',sans-serif;letter-spacing:.1em;color:#8a8578;margin:2px 0 10px;text-transform:uppercase}'
+      + '.asyii-cards__grid,.shopguide .products{display:flex!important;flex-wrap:nowrap!important;gap:12px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;-webkit-overflow-scrolling:touch!important;padding:2px 0 14px!important;grid-template-columns:none!important}'
+      + '.asyii-cards__grid>a.asyii-card,.shopguide .products>*{flex:0 0 82vw!important;min-width:82vw!important;max-width:82vw!important;scroll-snap-align:center!important;box-sizing:border-box!important}'
+      + 'table.asyii-card-row{display:block!important;width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;-webkit-overflow-scrolling:touch!important;border-spacing:0!important;padding-bottom:14px!important}'
+      + 'table.asyii-card-row tbody,table.asyii-card-row tr{display:flex!important;flex-wrap:nowrap!important;gap:12px!important;width:max-content!important}'
+      + 'table.asyii-card-row td.asyii-product-cell{display:block!important;flex:0 0 82vw!important;width:82vw!important;min-width:82vw!important;max-width:82vw!important;box-sizing:border-box!important;scroll-snap-align:center!important}'
+      + '}'
+      + '@media (min-width:701px){.asyii-swipe-hint{display:none!important}}';
+    DC.head.appendChild(cs);
+  }
+  try {
+    var crows = DC.querySelectorAll('.asyii-cards__grid, table.asyii-card-row, .shopguide .products');
+    crows.forEach(function (r) {
+      if (r.dataset.swipeHint) return;
+      r.dataset.swipeHint = '1';
+      var hint = DC.createElement('div');
+      hint.className = 'asyii-swipe-hint';
+      hint.textContent = '\u2190 SWIPE TO EXPLORE \u2192';
+      if (r.parentNode) r.parentNode.insertBefore(hint, r);
+    });
+  } catch (e) {}
+
   // ---- blog product cards: UTM + live price + Add to cart ----
   var cards = DC.querySelectorAll('a.asyii-card');
   if (!cards.length) return;
