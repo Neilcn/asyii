@@ -39,6 +39,10 @@
         // command is queued and processed when the library is ready.
         window.gtag = function () { (window.dataLayer = window.dataLayer || []).push(arguments); };
       }
+      if (!window.__asyiiGAConfigured) {
+        window.__asyiiGAConfigured = true;
+        window.gtag('config', 'G-4FZL0684CZ', { send_page_view: false });
+      }
       window.gtag('event', 'add_to_cart', {
         send_to: 'G-4FZL0684CZ',
         attribution_campaign: campaign,
